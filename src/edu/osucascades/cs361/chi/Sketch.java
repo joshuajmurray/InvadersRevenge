@@ -3,6 +3,7 @@ package edu.osucascades.cs361.chi;
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
+    public static final String JOSH_TEST = "test";
 
     public void settings() {
         fullScreen();
@@ -13,7 +14,10 @@ public class Sketch extends PApplet {
     }
 
     public void draw() {
-        fill(255, 255, 0);
-        ellipse(width/2, height/2, 100, 100);
+        noFill();
+        ellipse(width - 100, height - 100, 100, 100);
+        textSize(24);
+        text(JOSH_TEST, (width - 100) - (textWidth(JOSH_TEST) / 2), height - 100, 100);
+        fill(255, 255, 255);
     }
 }
