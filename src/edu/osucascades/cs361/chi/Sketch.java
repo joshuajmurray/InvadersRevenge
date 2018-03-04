@@ -18,6 +18,8 @@ public class Sketch extends PApplet {
         ellipse(width - 100, height - 100, 100, 100);
         textSize(24);
         text(JOSH_TEST, (width - 100) - (textWidth(JOSH_TEST) / 2), height - 100, 100);
-        fill(255, 255, 255);
+        fill(255, 0, 255);
+        ellipse(width - 500, height - 500, 100, 100);
+
     }
 }
