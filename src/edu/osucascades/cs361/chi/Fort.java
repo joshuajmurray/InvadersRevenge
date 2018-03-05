@@ -21,7 +21,7 @@ public class Fort {
     }
 
     public void draw() {
-        fill(255, 0 , 0);
+        p.fill(255, 0 , 0);
         p.rect(x, y, 4, 3);
     }
 }
