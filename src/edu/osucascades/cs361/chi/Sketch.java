@@ -13,6 +13,7 @@ public class Sketch extends PApplet {
     public ArrayList<Explosive> getExplosives() {
         return this.explosives;
     }
+
     public void settings() {
         this.size(800,800);
     }
@@ -22,8 +23,7 @@ public class Sketch extends PApplet {
 
     public void setup() {
         smooth();
-       this.player = new Tank(0,600, this);
-
+        this.player = new Tank(0,600, this);
     }
 
     public void draw() {
@@ -37,30 +37,24 @@ public class Sketch extends PApplet {
             projectile.move();
             projectile.display();
         }
-
     }
-    public void keyPressed()
-    {
-        if (key == 'a')
-        {
+    
+    public void keyPressed() {
+        if (key == 'a') {
             this.playerMovementDirection = -1;
         }
 
-        if (key == 'd')
-        {
+        if (key == 'd') {
             this.playerMovementDirection = 1;
         }
     }
 
-    public void keyReleased()
-    {
-        if (key == 'a' || key == 'd' ){
+    public void keyReleased() {
+        if (key == 'a' || key == 'd' ) {
             this.playerMovementDirection = 0;
         }
-
-         if (key == ' ' && this.player.isReloading() == false) {
-           this.player.shoot(this);
-           }
-
+        if (key == ' ' && this.player.isReloading() == false) {
+            this.player.shoot(this);
+        }
     }
 }
