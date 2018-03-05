@@ -1,7 +1,5 @@
 package edu.osucascades.cs361.chi;
 
-
-
 public class Explosive {
     public int x = 0;
     public int y = -100;
@@ -25,8 +23,8 @@ public class Explosive {
     }
 
     public void display() {
-            this.move();
-            canvas.rect(this.x + 24, this.y - 10, 3, 10);
-            canvas.fill(255);
+        this.move();
+        canvas.rect(this.x + 24, this.y - 10, 3, 10);
+        canvas.fill(255);
     }
 }
