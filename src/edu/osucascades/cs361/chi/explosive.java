@@ -14,7 +14,7 @@ public class Explosive {
         this.canvas = p;
     }
 
-    public void launch(PlayerTank p) {
+    public void launch(Tank p) {
         this.x = p.x;
         this.y = p.y;
 

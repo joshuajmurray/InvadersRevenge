@@ -5,10 +5,10 @@ public class playerRocket extends Explosive {
     public int x = 0;
     public int y = -100;
     public Sketch canvas;
-    private PlayerTank player;
+    private Tank player;
     public int locationInExplosiveArray;
 
-    public playerRocket( int x,int y, Sketch canvas, PlayerTank player) {
+    public playerRocket( int x,int y, Sketch canvas, Tank player) {
         this.canvas = canvas;
         super.canvas = canvas;
 
@@ -19,7 +19,7 @@ public class playerRocket extends Explosive {
         this.canvas.explosives.add(this);
     }
 
-    public void launch(PlayerTank p) {
+    public void launch(Tank p) {
         this.player.setReloading(true);
         super.launch(p);
     }
