@@ -14,6 +14,8 @@ public class Sketch extends PApplet {
     }
 
     public void draw() {
+        drawRyderCircle();
+
         noFill();
         ellipse(width - 100, height - 100, 100, 100);
         textSize(24);
@@ -21,5 +23,10 @@ public class Sketch extends PApplet {
         fill(255, 0, 255);
         ellipse(width - 500, height - 500, 100, 100);
 
+    }
+
+    private void drawRyderCircle() {
+        fill(100, 0, 255);
+        ellipse(width/2 - 200, height/2, 100,100);
     }
 }
