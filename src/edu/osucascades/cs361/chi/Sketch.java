@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Sketch extends PApplet {
 
-    private PlayerTank player;
+    private Tank player;
     private int playerMovementDirection = 0;
 
     public ArrayList<Explosive> explosives = new ArrayList<>();
@@ -19,7 +19,7 @@ public class Sketch extends PApplet {
 
     public void setup() {
         smooth();
-       this.player = new PlayerTank(0,600, this);
+       this.player = new Tank(0,600, this);
 
     }
 
