@@ -18,6 +18,9 @@ public class Sketch extends PApplet {
         this.size(800,800);
     }
 
+    public ArrayList<Fort> forts = new ArrayList<>();
+
+
     public void setup() {
         smooth();
         this.player = new Tank(0,600, this);
