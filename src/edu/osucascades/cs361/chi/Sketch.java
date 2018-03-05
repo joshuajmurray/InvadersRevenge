@@ -1,38 +1,63 @@
 package edu.osucascades.cs361.chi;
-
 import processing.core.PApplet;
 
-public class Sketch extends PApplet {
-    public static final String JOSH_TEST = "test";
+import java.util.ArrayList;
 
+public class Sketch extends PApplet {
+
+    private PlayerTank player;
+    private int playerMovementDirection = 0;
+
+    public ArrayList<Explosive> explosives = new ArrayList<>();
+
+    public ArrayList<Explosive> getExplosives() {
+        return this.explosives;
+    }
     public void settings() {
-        fullScreen();
+        this.size(800,800);
     }
 
     public void setup() {
-        background(55);
+        smooth();
+       this.player = new PlayerTank(0,600, this);
+
     }
 
     public void draw() {
-        drawRyderCircle();
-        drawCamCircle();
+        background(55);
+        this.player.move(playerMovementDirection);
+        this.player.display();
 
-        noFill();
-        ellipse(width - 100, height - 100, 100, 100);
-        textSize(24);
-        text(JOSH_TEST, (width - 100) - (textWidth(JOSH_TEST) / 2), height - 100, 100);
-        fill(255, 0, 255);
-        ellipse(width - 500, height - 500, 100, 100);
+        //cycle through explosives
+        for (int i=0; i<this.explosives.size(); i++) {
+            Explosive projectile = this.explosives.get(i);
+            projectile.move();
+            projectile.display();
+        }
 
     }
+    public void keyPressed()
+    {
+        if (key == 'a')
+        {
+            this.playerMovementDirection = -1;
+        }
 
-    private void drawRyderCircle() {
-        fill(100, 0, 255);
-        ellipse(width/2 - 200, height/2, 100,100);
+        if (key == 'd')
+        {
+            this.playerMovementDirection = 1;
+        }
     }
 
-    private void drawCamCircle() {
-        fill(0, 128, 0);
-        ellipse(width/2 - 300, height/2, 100,100);
+    public void keyReleased()
+    {
+        if (key == 'a' || key == 'd' ){
+            this.playerMovementDirection = 0;
+        }
+
+         if (key == ' ' && this.player.isReloading() == false) {
+           this.player.shoot(this);
+           }
+
     }
 }
