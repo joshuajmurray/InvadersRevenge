@@ -13,7 +13,7 @@ public class AlienBomb extends Explosive {
         super.canvas = canvas;
     }
 
-    public void launch(PlayerTank p) {
+    public void launch(Tank p) {
         super.launch(p);
     }
 
