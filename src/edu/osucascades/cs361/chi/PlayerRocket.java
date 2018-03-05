@@ -1,6 +1,6 @@
 package edu.osucascades.cs361.chi;
 
-public class playerRocket extends Explosive {
+public class PlayerRocket extends Explosive {
 
     public int x = 0;
     public int y = -100;
@@ -8,7 +8,7 @@ public class playerRocket extends Explosive {
     private Tank player;
     public int locationInExplosiveArray;
 
-    public playerRocket( int x,int y, Sketch canvas, Tank player) {
+    public PlayerRocket( int x,int y, Sketch canvas, Tank player) {
         this.canvas = canvas;
         super.canvas = canvas;
 

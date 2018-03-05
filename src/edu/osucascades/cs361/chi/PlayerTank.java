@@ -2,7 +2,7 @@ package edu.osucascades.cs361.chi;
 
 import processing.core.PApplet;
 
-public class PlayerTank{
+public class PlayerTank {
     public int x = 0;
     public int y = 0;
     private PApplet canvas;
