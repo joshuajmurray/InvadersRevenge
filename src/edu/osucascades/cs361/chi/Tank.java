@@ -22,30 +22,28 @@ public class Tank {
         this.y = y;
         this.canvas = canvas;
     }
+
     public void move(int direction){
         this.xSpeed = direction * 5;
     }
 
-
-    private void update(){
-        if (this.x < 0){
+    private void update() {
+        if (this.x < 0) {
             this.x = this.canvas.width;
         }
-
-        if (this.x > this.canvas.width)
-        {
+        if (this.x > this.canvas.width) {
             this.x = 0;
         }
         this.x = this.x + this.xSpeed;
     }
 
-    public void display (){
+    public void display() {
         this.update();
         canvas.rect(this.x,this.y,50,15);
         canvas.fill(255,0,0);
     }
 
-    public void shoot(Sketch canvas){
+    public void shoot(Sketch canvas) {
         int rocketX = this.x + 24;
         int rocketY = this.y - 10;
         PlayerRocket rocket = new PlayerRocket(rocketX,rocketY, canvas, this);
