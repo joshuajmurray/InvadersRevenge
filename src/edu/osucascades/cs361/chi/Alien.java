@@ -20,7 +20,7 @@ public class Alien {
     }
 
     public void draw() {
-        p.fill(200, 200, 200);
+        p.fill(0, 255, 50);
         p.rect(x, y, width, height);
         move();
     }
