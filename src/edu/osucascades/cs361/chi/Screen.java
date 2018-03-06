@@ -17,8 +17,9 @@ public class Screen {
         p = currentP;
     }
 
-    public void updateScreen() {
+    public void draw() {
         p.background(0,0,0);
+        p.fill(255);
         p.textSize(36);
         p.text(PLAY_TEXT,(p.width/2)-(p.textWidth(PLAY_TEXT)/2),50);
         p.text(SCORE_TEXT,50,50);
