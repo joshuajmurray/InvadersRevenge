@@ -43,7 +43,6 @@ public class Sketch extends PApplet {
         ArrayList<Explosive> explosivesToKill = new ArrayList<>();
         ArrayList<VehicleSuper> vehiclesToKill = new ArrayList<>();
 
-
         for (Explosive explosive : this.explosives) {
             for (VehicleSuper entity : this.vehicles) {
                 if (explosive.isCollision( explosive,  entity)) {
@@ -58,7 +57,6 @@ public class Sketch extends PApplet {
         for (VehicleSuper entity : vehiclesToKill) {
             entity.kill();
         }
-
 
     }
 

@@ -2,35 +2,25 @@ package edu.osucascades.cs361.chi;
 
 
 public class VehicleSuper {
-    public int x;
-    public int y;
-    public int width;
-    public int height;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
     private int direction = 1;
 
     private Sketch canvas;
     private int xSpeed = 0;
     private boolean reloading;
-    public char child;
+    char child;
 
-    public void setReloading(boolean b) {
-        this.reloading = b;
-    }
 
-    public boolean isReloading() {
-        return reloading;
-    }
-    public void setxSpeed(int x){
-        this.xSpeed = x * 3;
-    }
-
-    public VehicleSuper(int x, int y, Sketch canvas){
+    VehicleSuper(int x, int y, Sketch canvas){
         this.x = x;
         this.y = y;
         this.canvas = canvas;
     }
 
-    public void move() {
+    private void move() {
         if (this.child == 't') {
             if (this.x < 0) {
                 this.x = 0;
@@ -72,7 +62,16 @@ public class VehicleSuper {
     public void kill(){
         this.canvas.vehicles.remove(this);
     }
+    public void setReloading(boolean b) {
+        this.reloading = b;
+    }
 
+    public boolean isReloading() {
+        return reloading;
+    }
+    public void setxSpeed(int x){
+        this.xSpeed = x * 3;
+    }
     public int getWidth() {
         return this.width;
     }
@@ -82,6 +81,14 @@ public class VehicleSuper {
 
     public int getY() {
         return y;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public int getX() {

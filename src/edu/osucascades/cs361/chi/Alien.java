@@ -11,8 +11,8 @@ public class Alien extends VehicleSuper{
         super(x, y , canvas);
         this.canvas = canvas;
 
-        super.width = this.width;
-        super.height = this.height;
+        super.setWidth(this.width);
+        super.setHeight(this.height);
         super.child = 'a';
         this.canvas.vehicles.add(this);
     }

@@ -12,8 +12,8 @@ public class Tank extends VehicleSuper {
         super(x, y , canvas);
         this.x = x;
         this.y = y;
-        super.width = this.width;
-        super.height = this.height;
+        super.setHeight(this.height);
+        super.setWidth(this.width);
         this.canvas = canvas;
         super.child = 't';
         this.canvas.vehicles.add(this);
@@ -21,13 +21,10 @@ public class Tank extends VehicleSuper {
 
     public void updateDirection(int direction){
         super.setxSpeed(direction);
-        this.x = super.x;
-        this.y = super.y;
+        this.x = super.getX();
+        this.y = super.getY();
     }
 
-    public void draw() {
-        super.draw();
-    }
 
     public void shoot(Sketch canvas) {
         PlayerRocket rocket = new PlayerRocket(canvas, this);
