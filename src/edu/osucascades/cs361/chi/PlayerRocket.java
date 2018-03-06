@@ -7,6 +7,8 @@ public class PlayerRocket extends Explosive {
 
     PlayerRocket(Sketch canvas, Tank player) {
         super(canvas,-10, player);
+        super.setHeight(10);
+        super.setWidth(3);
         this.canvas = canvas;
         this.player = player;
         this.canvas.explosives.add(this);
