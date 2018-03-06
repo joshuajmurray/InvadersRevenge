@@ -6,22 +6,22 @@ import java.util.ArrayList;
 public class Sketch extends PApplet {
 
     Screen s;
+    public ArrayList<Explosive> explosives = new ArrayList<>();
+    public ArrayList<Fort> forts = new ArrayList<>();
+    public ArrayList<VehicleSuper> vehicles = new ArrayList<>();
 
-    private Tank player;
     private int playerMovementDirection = 0;
+    private Tank player;
+
 
     private Alien alien;
 
-    public ArrayList<Explosive> explosives = new ArrayList<>();
 
 
     public void settings() {
 
         fullScreen();
     }
-
-    public ArrayList<Fort> forts = new ArrayList<>();
-
 
     public void setup() {
         smooth();
@@ -34,10 +34,11 @@ public class Sketch extends PApplet {
     public void draw() {
         s.draw();
         this.player.updateDirection(playerMovementDirection);
-        this.player.draw();
-
-        this.alien.draw();
-
+        //cycle through entities
+        for (int i=0; i<this.vehicles.size(); i++) {
+            VehicleSuper entity = this.vehicles.get(i);
+            entity.draw();
+        }
         //cycle through explosives
 
         for (int i=0; i<this.explosives.size(); i++) {
@@ -45,6 +46,8 @@ public class Sketch extends PApplet {
             projectile.move();
             projectile.display();
         }
+        
+
     }
 
     public void keyReleased() {
