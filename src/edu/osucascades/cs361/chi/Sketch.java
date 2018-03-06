@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Sketch extends PApplet {
 
+    Screen s;
+
     private Tank player;
     private int playerMovementDirection = 0;
 
@@ -17,7 +19,8 @@ public class Sketch extends PApplet {
     }
 
     public void settings() {
-        this.size(800,800);
+//        this.size(800,800);
+        fullScreen();;
     }
 
     public ArrayList<Fort> forts = new ArrayList<>();
@@ -27,10 +30,13 @@ public class Sketch extends PApplet {
         smooth();
         this.player = new Tank(0,600, this);
         this.alien = new Alien(0, 200, this);
+
+        s = new Screen(100000,4,this);
     }
 
     public void draw() {
         background(55);
+        s.draw();
         this.player.move(playerMovementDirection);
         this.player.display();
 
