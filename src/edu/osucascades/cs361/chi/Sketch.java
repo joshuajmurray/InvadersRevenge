@@ -35,7 +35,6 @@ public class Sketch extends PApplet {
     }
 
     public void draw() {
-        background(55);
         s.draw();
         this.player.move(playerMovementDirection);
         this.player.display();
