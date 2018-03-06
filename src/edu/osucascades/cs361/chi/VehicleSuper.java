@@ -6,7 +6,7 @@ public class VehicleSuper {
     public int y;
     public int width;
     public int height;
-    private int direction = -1;
+    private int direction = 1;
 
     private Sketch canvas;
     private int xSpeed = 0;
@@ -30,7 +30,7 @@ public class VehicleSuper {
         this.canvas = canvas;
     }
 
-    private void move() {
+    public void move() {
         if (this.child == 't') {
             if (this.x < 0) {
                 this.x = 0;

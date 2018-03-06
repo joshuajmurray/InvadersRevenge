@@ -33,6 +33,10 @@ public class Explosive {
         canvas.fill(255);
     }
 
+    public void kill(){
+        this.canvas.explosives.remove(this);
+    }
+
     int getY() {
         return y;
     }

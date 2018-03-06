@@ -40,13 +40,25 @@ public class Sketch extends PApplet {
             projectile.display();
         }
         //collision checking
+        ArrayList<Explosive> explosivesToKill = new ArrayList<>();
+        ArrayList<VehicleSuper> vehiclesToKill = new ArrayList<>();
+
+
         for (Explosive explosive : this.explosives) {
             for (VehicleSuper entity : this.vehicles) {
                 if (explosive.isCollision( explosive,  entity)) {
-                    entity.kill();
+                    vehiclesToKill.add(entity);
+                    explosivesToKill.add(explosive);
                 }
             }
         }
+        for (Explosive explosive : explosivesToKill) {
+            explosive.kill();
+        }
+        for (VehicleSuper entity : vehiclesToKill) {
+            entity.kill();
+        }
+
 
     }
 
