@@ -36,8 +36,8 @@ public class Sketch extends PApplet {
 
     public void draw() {
         s.draw();
-        this.player.move(playerMovementDirection);
-        this.player.display();
+        this.player.updateDirection(playerMovementDirection);
+        this.player.draw();
 
         this.alien.draw();
 
@@ -49,6 +49,16 @@ public class Sketch extends PApplet {
         }
     }
     
+
+
+    public void keyReleased() {
+        if (key == 'a' || key == 'd' ) {
+            this.playerMovementDirection = 0;
+        }
+        if (key == ' ' && !this.player.isReloading()) {
+            this.player.shoot(this);
+        }
+    }
     public void keyPressed() {
         if (key == 'a') {
             this.playerMovementDirection = -1;
@@ -56,15 +66,6 @@ public class Sketch extends PApplet {
 
         if (key == 'd') {
             this.playerMovementDirection = 1;
-        }
-    }
-
-    public void keyReleased() {
-        if (key == 'a' || key == 'd' ) {
-            this.playerMovementDirection = 0;
-        }
-        if (key == ' ' && this.player.isReloading() == false) {
-            this.player.shoot(this);
         }
     }
 }
