@@ -2,33 +2,36 @@ package edu.osucascades.cs361.chi;
 
 import processing.core.PApplet;
 
-public class Alien {
-    private PApplet p;
+public class Alien extends VehicleSuper{
+    private PApplet canvas;
     private int x;
     private int y;
-    private int width;
-    private int height;
-    private int direction;
+    private int width = 30;
+    private int height = 30;
+    private int direction;private boolean reloading;
 
-    public Alien(int x, int y, PApplet p) {
-        this.p = p;
+
+
+    public Alien(int x, int y, PApplet canvas) {
+        super(x, y , canvas);
+        this.canvas = canvas;
         this.x = x;
         this.y = y;
-        this.width = 30;
-        this.height = 30;
+        super.width = this.width;
+        super.height = this.height;
         this.direction = 1;
     }
 
     public void draw() {
-        p.fill(0, 255, 50);
-        p.rect(x, y, width, height);
+        canvas.fill(0, 255, 50);
+        canvas.rect(x, y, width, height);
         move();
     }
 
     public void move() {
         if (this.direction == 1) {
             this.x += 1;
-            if (this.x == p.width - this.width) {
+            if (this.x == canvas.width - this.width) {
                 this.direction = 0;
             }
         }
@@ -38,5 +41,12 @@ public class Alien {
                 this.direction = 1;
             }
         }
+    }
+    public void setReloading(boolean b) {
+        this.reloading = b;
+    }
+
+    public boolean isReloading() {
+        return reloading;
     }
 }
