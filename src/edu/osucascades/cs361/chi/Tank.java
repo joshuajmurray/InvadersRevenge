@@ -1,22 +1,22 @@
 package edu.osucascades.cs361.chi;
 
-import processing.core.PApplet;
-
 public class Tank extends VehicleSuper {
     private int x;
     private int y;
     private int width = 50;
     private int height = 15;
-    private PApplet canvas;
+    private Sketch canvas;
     private boolean reloading;
 
-    Tank(int x, int y, PApplet canvas){
+    Tank(int x, int y, Sketch canvas){
         super(x, y , canvas);
         this.x = x;
         this.y = y;
         super.width = this.width;
         super.height = this.height;
         this.canvas = canvas;
+        super.child = 't';
+        this.canvas.vehicles.add(this);
     }
 
     public void updateDirection(int direction){

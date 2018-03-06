@@ -1,23 +1,24 @@
 package edu.osucascades.cs361.chi;
 
-import processing.core.PApplet;
 
 public class Alien extends VehicleSuper{
-    private PApplet canvas;
+    private Sketch canvas;
     private int x;
     private int y;
     private int width = 30;
     private int height = 30;
-    private int direction;private boolean reloading;
+    private int direction = 1;
+    private boolean reloading;
 
-    Alien(int x, int y, PApplet canvas) {
+    Alien(int x, int y, Sketch canvas) {
         super(x, y , canvas);
         this.canvas = canvas;
         this.x = x;
         this.y = y;
         super.width = this.width;
         super.height = this.height;
-        this.direction = 1;
+        super.child = 'a';
+        this.canvas.vehicles.add(this);
     }
 
     public void draw() {
@@ -47,4 +48,6 @@ public class Alien extends VehicleSuper{
     public boolean isReloading() {
         return reloading;
     }
+
+
 }
