@@ -8,6 +8,8 @@ public class Sketch extends PApplet {
     private Tank player;
     private int playerMovementDirection = 0;
 
+    private Alien alien;
+
     public ArrayList<Explosive> explosives = new ArrayList<>();
 
     public ArrayList<Explosive> getExplosives() {
@@ -24,12 +26,15 @@ public class Sketch extends PApplet {
     public void setup() {
         smooth();
         this.player = new Tank(0,600, this);
+        this.alien = new Alien(0, 200, this);
     }
 
     public void draw() {
         background(55);
         this.player.move(playerMovementDirection);
         this.player.display();
+
+        this.alien.draw();
 
         //cycle through explosives
         for (int i=0; i<this.explosives.size(); i++) {
