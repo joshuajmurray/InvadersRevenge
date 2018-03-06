@@ -18,9 +18,9 @@ public class Explosive {
         this.vehicle = vehicle;
     }
 
-    void launch(VehicleSuper p) {
-        this.x = vehicle.x;
-        this.y = vehicle.y;
+    void launch() {
+        this.x = vehicle.x + vehicle.width/2 ;
+        this.y = vehicle.y - vehicle.height/2;
     }
 
     public void move() {
@@ -29,7 +29,7 @@ public class Explosive {
 
     public void display() {
         this.move();
-        canvas.rect(this.x + vehicle.width/2, this.y - vehicle.height/2, width, height);
+        canvas.rect(this.x, this.y, width, height);
         canvas.fill(255);
     }
 
@@ -53,12 +53,13 @@ public class Explosive {
         this.width = width;
     }
 
-    public void isCollision(Explosive  projectile, VehicleSuper vehicle) {
-        
+    public boolean isCollision(Explosive  projectile, VehicleSuper vehicle) {
+        boolean b = false;
         if (projectile.x >= vehicle.getX() && projectile.x +  projectile.width <= vehicle.getX() + vehicle. getWidth()) {
             if (projectile.y >= vehicle.getY() && projectile.y  + projectile.height <= vehicle.getY() +  vehicle.getHeight()) {
-                vehicle.kill();
+               b = true;
             }
         }
+        return b;
     }
 }

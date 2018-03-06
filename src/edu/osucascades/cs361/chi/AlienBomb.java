@@ -14,8 +14,8 @@ public class AlienBomb extends Explosive {
         super.setDirection(10);
     }
 
-    public void launch(Tank p) {
-        super.launch(p);
+    public void launch() {
+        super.launch();
     }
 
     public void move() {

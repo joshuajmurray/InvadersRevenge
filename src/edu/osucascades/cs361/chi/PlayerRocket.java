@@ -16,7 +16,7 @@ public class PlayerRocket extends Explosive {
 
     public void launch(Tank p) {
         this.player.setReloading(true);
-        super.launch(p);
+        super.launch();
     }
 
     public void move() {

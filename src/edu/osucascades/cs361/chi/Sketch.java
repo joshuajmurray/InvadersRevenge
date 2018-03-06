@@ -12,14 +12,9 @@ public class Sketch extends PApplet {
 
     private int playerMovementDirection = 0;
     private Tank player;
-
-
     private Alien alien;
 
-
-
     public void settings() {
-
         fullScreen();
     }
 
@@ -40,13 +35,18 @@ public class Sketch extends PApplet {
             entity.draw();
         }
         //cycle through explosives
-
         for (int i=0; i<this.explosives.size(); i++) {
             Explosive projectile = this.explosives.get(i);
-            projectile.move();
             projectile.display();
         }
-        
+        //collision checking
+        for (Explosive explosive : this.explosives) {
+            for (VehicleSuper entity : this.vehicles) {
+                if (explosive.isCollision( explosive,  entity)) {
+                    entity.kill();
+                }
+            }
+        }
 
     }
 
