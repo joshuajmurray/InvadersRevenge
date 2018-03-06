@@ -10,7 +10,7 @@ public class Alien extends VehicleSuper{
     private int height = 30;
     private int direction;private boolean reloading;
 
-    public Alien(int x, int y, PApplet canvas) {
+    Alien(int x, int y, PApplet canvas) {
         super(x, y , canvas);
         this.canvas = canvas;
         this.x = x;
@@ -26,7 +26,7 @@ public class Alien extends VehicleSuper{
         move();
     }
 
-    public void move() {
+    private void move() {
         if (this.direction == 1) {
             this.x += 1;
             if (this.x == canvas.width - this.width) {

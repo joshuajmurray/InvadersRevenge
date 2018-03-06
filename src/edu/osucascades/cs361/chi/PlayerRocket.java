@@ -2,10 +2,10 @@ package edu.osucascades.cs361.chi;
 
 public class PlayerRocket extends Explosive {
 
-    public Sketch canvas;
+    private Sketch canvas;
     private Tank player;
 
-    public PlayerRocket(Sketch canvas, Tank player) {
+    PlayerRocket(Sketch canvas, Tank player) {
         super(canvas,-10, player);
         this.canvas = canvas;
         this.player = player;
@@ -18,7 +18,7 @@ public class PlayerRocket extends Explosive {
     }
 
     public void move() {
-        if (super.y < 0){
+        if (super.getY() < 0){
             this.player.setReloading(false);
             this.canvas.explosives.remove(this);
         }

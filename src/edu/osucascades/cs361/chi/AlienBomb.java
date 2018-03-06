@@ -4,14 +4,14 @@ import processing.core.PApplet;
 
 public class AlienBomb extends Explosive {
     public int x = 0;
-    public int y = -100;
-    public Sketch canvas;
-    public boolean firing = false;
+    private int y = -100;
+    private Sketch canvas;
+    private boolean firing = false;
 
     public AlienBomb( Sketch canvas) {
         this.canvas = canvas;
-        super.canvas = canvas;
-        super.direction = 10;
+        super.setCanvas(canvas);
+        super.setDirection(10);
     }
 
     public void launch(Tank p) {
@@ -19,7 +19,7 @@ public class AlienBomb extends Explosive {
     }
 
     public void move() {
-        if (super.y < 0){
+        if (super.getY() < 0){
             this.firing = false;
         }
         this.y = this.y + 15;

@@ -16,6 +16,7 @@ public class Sketch extends PApplet {
 
 
     public void settings() {
+
         fullScreen();
     }
 
@@ -38,6 +39,7 @@ public class Sketch extends PApplet {
         this.alien.draw();
 
         //cycle through explosives
+
         for (int i=0; i<this.explosives.size(); i++) {
             Explosive projectile = this.explosives.get(i);
             projectile.move();
