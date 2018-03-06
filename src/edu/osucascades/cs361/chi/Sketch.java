@@ -14,13 +14,9 @@ public class Sketch extends PApplet {
 
     public ArrayList<Explosive> explosives = new ArrayList<>();
 
-    public ArrayList<Explosive> getExplosives() {
-        return this.explosives;
-    }
 
     public void settings() {
-//        this.size(800,800);
-        fullScreen();;
+        fullScreen();
     }
 
     public ArrayList<Fort> forts = new ArrayList<>();
@@ -48,8 +44,6 @@ public class Sketch extends PApplet {
             projectile.display();
         }
     }
-    
-
 
     public void keyReleased() {
         if (key == 'a' || key == 'd' ) {
