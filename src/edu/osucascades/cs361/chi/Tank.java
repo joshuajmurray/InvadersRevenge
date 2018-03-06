@@ -25,7 +25,6 @@ public class Tank extends VehicleSuper {
         this.y = super.getY();
     }
 
-
     public void shoot(Sketch canvas) {
         PlayerRocket rocket = new PlayerRocket(canvas, this);
         rocket.launch(this);

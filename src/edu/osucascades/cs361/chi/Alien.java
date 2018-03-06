@@ -17,6 +17,11 @@ public class Alien extends VehicleSuper{
         this.canvas.vehicles.add(this);
     }
 
+    public void kill(){
+        this.canvas.s.updateScore();
+        super.kill();
+    }
+
     public void setReloading(boolean b) {
         this.reloading = b;
     }

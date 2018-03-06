@@ -27,4 +27,7 @@ public class Screen {
         canvas.text(LIVES_TEXT,50,(canvas.height - 50));
         canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)),(canvas.height - 50));
     }
+    public void updateScore(){
+        this.score += 10000;
+    }
 }
