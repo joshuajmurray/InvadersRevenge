@@ -11,6 +11,7 @@ public class AlienBomb extends Explosive {
     public AlienBomb( Sketch canvas) {
         this.canvas = canvas;
         super.canvas = canvas;
+        super.direction = 10;
     }
 
     public void launch(Tank p) {
