@@ -4,27 +4,27 @@ import processing.core.PApplet;
 
 public class Screen {
     public static final String START_TEXT = "Start Screen Test";
-    public static final String PLAY_TEXT = "Invaders Revenge!";
-    public static final String SCORE_TEXT = "Score: ";
-    public static final String LIVES_TEXT = "Lives: ";
-    int score;
-    int lives;
-    PApplet p;
+    private static final String PLAY_TEXT = "Invaders Revenge!";
+    private static final String SCORE_TEXT = "Score: ";
+    private static final String LIVES_TEXT = "Lives: ";
+    private int score;
+    private int lives;
+    private PApplet canvas;
 
-    public Screen(int currentScore, int currentLives, PApplet currentP) {
+    Screen(int currentScore, int currentLives, PApplet currentP) {
         score = currentScore;
         lives = currentLives;
-        p = currentP;
+        canvas = currentP;
     }
 
     public void draw() {
-        p.background(0,0,0);
-        p.fill(255);
-        p.textSize(36);
-        p.text(PLAY_TEXT,(p.width/2)-(p.textWidth(PLAY_TEXT)/2),50);
-        p.text(SCORE_TEXT,50,50);
-        p.text(score, (50 + p.textWidth(SCORE_TEXT)),50);
-        p.text(LIVES_TEXT,50,(p.height - 50));
-        p.text(lives, (50 + p.textWidth(LIVES_TEXT)),(p.height - 50));
+        canvas.background(0,0,0);
+        canvas.fill(255);
+        canvas.textSize(36);
+        canvas.text(PLAY_TEXT,(canvas.width/2)-(canvas.textWidth(PLAY_TEXT)/2),50);
+        canvas.text(SCORE_TEXT,50,50);
+        canvas.text(score, (50 + canvas.textWidth(SCORE_TEXT)),50);
+        canvas.text(LIVES_TEXT,50,(canvas.height - 50));
+        canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)),(canvas.height - 50));
     }
 }
