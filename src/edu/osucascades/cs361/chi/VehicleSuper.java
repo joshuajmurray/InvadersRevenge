@@ -3,8 +3,8 @@ package edu.osucascades.cs361.chi;
 import processing.core.PApplet;
 
 public class VehicleSuper {
-    public int x = 0;
-    public int y = 0;
+    public int x;
+    public int y;
     public int width;
     public int height;
 
@@ -26,9 +26,6 @@ public class VehicleSuper {
     public VehicleSuper(int x, int y, PApplet canvas){
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
-
         this.canvas = canvas;
     }
 

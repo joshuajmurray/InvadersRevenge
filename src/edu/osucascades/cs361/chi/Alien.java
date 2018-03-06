@@ -10,8 +10,6 @@ public class Alien extends VehicleSuper{
     private int height = 30;
     private int direction;private boolean reloading;
 
-
-
     public Alien(int x, int y, PApplet canvas) {
         super(x, y , canvas);
         this.canvas = canvas;

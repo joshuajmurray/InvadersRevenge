@@ -11,13 +11,6 @@ public class Tank extends VehicleSuper {
 
     private boolean reloading;
 
-    public void setReloading(boolean b) {
-        this.reloading = b;
-    }
-
-    public boolean isReloading() {
-        return reloading;
-    }
 
     public Tank(int x, int y, PApplet canvas){
         super(x, y , canvas);
@@ -43,5 +36,13 @@ public class Tank extends VehicleSuper {
         int rocketY = this.height/2;
         PlayerRocket rocket = new PlayerRocket(rocketX,rocketY, canvas, this);
         rocket.launch(this);
+    }
+
+    public void setReloading(boolean b) {
+        this.reloading = b;
+    }
+
+    public boolean isReloading() {
+        return reloading;
     }
 }
