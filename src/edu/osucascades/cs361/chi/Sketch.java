@@ -23,7 +23,6 @@ public class Sketch extends PApplet {
         smooth();
         this.player = new Tank(0,600, this);
         this.alien = new Alien(0, 200, this);
-
         this.game = new Game(this);
         this.screen = new Screen(100000,4,this);
     }

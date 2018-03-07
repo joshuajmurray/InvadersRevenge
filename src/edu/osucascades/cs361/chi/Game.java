@@ -7,6 +7,7 @@ public class Game {
     Game(Sketch canvas){
         this.canvas = canvas;
     }
+    // cycles through the vehicle and explosive arrays drawing each of them.
     public void drawEntities(){
         //cycle through entities
         for (int i=0; i<this.canvas.vehicles.size(); i++) {
@@ -19,6 +20,8 @@ public class Game {
             projectile.display();
         }
     }
+    //creates two "to kill" arrays to hold objects marked to kill by the collision check method
+    //then calls kill on each marked object
     public void checkForCollisions(ArrayList<Explosive> explosives, ArrayList<VehicleSuper> vehicles){
         ArrayList<Explosive> explosivesToKill = new ArrayList<>();
         ArrayList<VehicleSuper> vehiclesToKill = new ArrayList<>();
@@ -31,6 +34,7 @@ public class Game {
             entity.kill();
         }
     }
+    //calls explosive.isCollision for each explosive on each vehicle there is to check for collisions.
     private void collisionCheck(ArrayList<Explosive> explosives, ArrayList<VehicleSuper> vehicles, ArrayList<Explosive> explosivesToKill, ArrayList<VehicleSuper> vehiclesToKill){
         for (Explosive explosive : explosives) {
             for (VehicleSuper entity : vehicles) {

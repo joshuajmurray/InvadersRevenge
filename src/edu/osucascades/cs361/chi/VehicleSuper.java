@@ -6,10 +6,9 @@ public class VehicleSuper {
     private int y;
     private int width;
     private int height;
-    private int direction = 1;
 
     private Sketch canvas;
-    private int xSpeed = 0;
+    private int xSpeed = 1;
     private boolean reloading;
     char child;
 
@@ -31,16 +30,17 @@ public class VehicleSuper {
             this.x = this.x + this.xSpeed;
         }
         if (this.child == 'a'){
-            if (this.direction == 1) {
+            if (this.xSpeed == 1) {
                 this.x += 1;
                 if (this.x == canvas.width - this.width) {
-                    this.direction = 0;
+                    this.xSpeed = 0;
+                    this.y += 30;
                 }
             }
-            if (this.direction == 0) {
+            if (this.xSpeed == 0) {
                 this.x -= 1;
                 if (this.x == 0) {
-                    this.direction = 1;
+                    this.xSpeed = 1;
                 }
             }
         }
