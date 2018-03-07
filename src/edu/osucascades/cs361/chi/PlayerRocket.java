@@ -19,6 +19,11 @@ public class PlayerRocket extends Explosive {
         super.launch();
     }
 
+    public void kill() {
+        super.kill();
+        player.setReloading(false);
+    }
+
     public void move() {
         if (super.getY() < 0){
             this.player.setReloading(false);

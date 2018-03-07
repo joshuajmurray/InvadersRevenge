@@ -13,7 +13,6 @@ public class Sketch extends PApplet {
 
     private int playerMovementDirection = 0;
     private Tank player;
-    private Alien alien;
 
     public void settings() {
         fullScreen();
@@ -22,9 +21,12 @@ public class Sketch extends PApplet {
     public void setup() {
         smooth();
         this.player = new Tank(0,600, this);
-        this.alien = new Alien(0, 200, this);
+        for (int i=0; i<6 ; i++){
+            Alien alien = new Alien(i * 50, 200, this);
+        }
+
         this.game = new Game(this);
-        this.screen = new Screen(100000,4,this);
+        this.screen = new Screen(0,4,this);
     }
 
     public void draw() {

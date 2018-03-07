@@ -12,7 +12,6 @@ public class VehicleSuper {
     private boolean reloading;
     char child;
 
-
     VehicleSuper(int x, int y, Sketch canvas){
         this.x = x;
         this.y = y;
