@@ -29,25 +29,45 @@ public class Screen {
     }
 
     public void draw() {
+        displayCommonScreen();
+
+        if(page == START) {
+            displayStartScreen();
+        } else if(page == PLAY) {
+            displayPlayScreen();
+        }else if(page == PAUSE) {
+            displayPauseScreen();
+        } else if(page == GAMEOVER) {
+            displayGameOverScreen();
+        }
+    }
+
+    private void displayCommonScreen() {
         canvas.background(0, 0, 0);
         canvas.fill(255);
         canvas.textSize(36);
         canvas.text(PLAY_TEXT, (canvas.width / 2) - (canvas.textWidth(PLAY_TEXT) / 2), 50);
+    }
 
-        if(page == START) {
-            canvas.text(START_TEXT, (canvas.width/2) - ((canvas.textWidth(START_TEXT))/2), (canvas.height/2));
-        } else if(page == PLAY) {
-            drawScoreLives();
-            canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)), (canvas.height - 50));
-        }else if(page == PAUSE) {
-            drawScoreLives();
-            canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)), (canvas.height - 50));
-            canvas.text(PAUSE_TEXT, (canvas.width/2) - ((canvas.textWidth(PAUSE_TEXT))/2), (canvas.height/2));
-        } else if(page == GAMEOVER) {
-            canvas.text(GAME_OVER_TEXT, (canvas.width/2) - ((canvas.textWidth(GAME_OVER_TEXT))/2), (canvas.height/2));
-            canvas.text(HIGH_SCORE_TEXT, (canvas.width/2) - ((canvas.textWidth(HIGH_SCORE_TEXT))/2), ((canvas.height/2) + 50));
-            canvas.text(highScore, (canvas.width/2) + (canvas.textWidth(HIGH_SCORE_TEXT))/2, ((canvas.height/2) + 50));
-        }
+    private void displayStartScreen() {
+        canvas.text(START_TEXT, (canvas.width/2) - ((canvas.textWidth(START_TEXT))/2), (canvas.height/2));
+    }
+
+    private void displayPlayScreen() {
+        drawScoreLives();
+        canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)), (canvas.height - 50));
+    }
+
+    private void displayPauseScreen() {
+        drawScoreLives();
+        canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)), (canvas.height - 50));
+        canvas.text(PAUSE_TEXT, (canvas.width/2) - ((canvas.textWidth(PAUSE_TEXT))/2), (canvas.height/2));
+    }
+
+    private void displayGameOverScreen() {
+        canvas.text(GAME_OVER_TEXT, (canvas.width/2) - ((canvas.textWidth(GAME_OVER_TEXT))/2), (canvas.height/2));
+        canvas.text(HIGH_SCORE_TEXT, (canvas.width/2) - ((canvas.textWidth(HIGH_SCORE_TEXT))/2), ((canvas.height/2) + 50));
+        canvas.text(highScore, (canvas.width/2) + (canvas.textWidth(HIGH_SCORE_TEXT))/2, ((canvas.height/2) + 50));
     }
 
     private void drawScoreLives() {
