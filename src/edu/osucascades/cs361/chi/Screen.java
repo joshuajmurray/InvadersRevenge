@@ -14,7 +14,7 @@ public class Screen {
     private int score;
     private int lives;
     private PApplet canvas;
-    public int page = 3;
+    public int page = 1;
     private static final int START = 0;
     private static final int PLAY = 1;
     private static final int PAUSE = 2;

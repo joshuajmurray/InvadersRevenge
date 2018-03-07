@@ -12,9 +12,10 @@ public class VehicleSuper {
     private boolean reloading;
     char child;
 
-    VehicleSuper(int x, int y, Sketch canvas){
+    VehicleSuper(int x, int y,char childType, Sketch canvas){
         this.x = x;
         this.y = y;
+        this.child = childType;
         this.canvas = canvas;
     }
 
