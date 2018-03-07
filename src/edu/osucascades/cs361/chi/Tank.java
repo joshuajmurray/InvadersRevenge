@@ -1,54 +1,27 @@
 package edu.osucascades.cs361.chi;
 
-import processing.core.PApplet;
+public class Tank extends VehicleSuper {
 
-public class Tank {
-    public int x = 0;
-    public int y = 0;
-    private PApplet canvas;
-    private int xSpeed = 0;
-    private boolean reloading;
+    private int width = 50;
+    private int height = 15;
+    private Sketch canvas;
 
-    public void setReloading(boolean b) {
-        this.reloading = b;
-    }
+    Tank(int x, int y, Sketch canvas){
+        super(x, y ,'t', canvas);
+        super.setHeight(this.height);
+        super.setWidth(this.width);
 
-    public boolean isReloading() {
-        return reloading;
-    }
-
-    public Tank(int x, int y, PApplet canvas){
-        this.x = x;
-        this.y = y;
         this.canvas = canvas;
-    }
-    public void move(int direction){
-        this.xSpeed = direction * 5;
+        this.canvas.vehicles.add(this);
     }
 
-
-    private void update(){
-        if (this.x < 0){
-            this.x = this.canvas.width;
-        }
-
-        if (this.x > this.canvas.width)
-        {
-            this.x = 0;
-        }
-        this.x = this.x + this.xSpeed;
+    public void updateDirection(int direction){
+        super.setxSpeed(direction);
     }
 
-    public void display (){
-        this.update();
-        canvas.rect(this.x,this.y,50,15);
-        canvas.fill(255,0,0);
-    }
-
-    public void shoot(Sketch canvas){
-        int rocketX = this.x + 24;
-        int rocketY = this.y - 10;
-        PlayerRocket rocket = new PlayerRocket(rocketX,rocketY, canvas, this);
+    public void shoot(Sketch canvas) {
+        PlayerRocket rocket = new PlayerRocket(canvas, this);
         rocket.launch(this);
     }
+
 }

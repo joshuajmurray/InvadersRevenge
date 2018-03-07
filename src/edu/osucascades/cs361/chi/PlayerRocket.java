@@ -2,32 +2,32 @@ package edu.osucascades.cs361.chi;
 
 public class PlayerRocket extends Explosive {
 
-    public int x = 0;
-    public int y = -100;
-    public Sketch canvas;
+    private Sketch canvas;
     private Tank player;
-    public int locationInExplosiveArray;
 
-    public PlayerRocket( int x,int y, Sketch canvas, Tank player) {
+    PlayerRocket(Sketch canvas, Tank player) {
+        super(canvas,-10, player);
+        super.setHeight(10);
+        super.setWidth(3);
         this.canvas = canvas;
-        super.canvas = canvas;
-
         this.player = player;
-        this.x = x;
-        this.y = y;
-        this.locationInExplosiveArray = this.canvas.explosives.size();
         this.canvas.explosives.add(this);
     }
 
     public void launch(Tank p) {
         this.player.setReloading(true);
-        super.launch(p);
+        super.launch();
+    }
+
+    public void kill() {
+        super.kill();
+        player.setReloading(false);
     }
 
     public void move() {
-        if (super.y < 0){
+        if (super.getY() < 0){
             this.player.setReloading(false);
-            this.canvas.explosives.remove(locationInExplosiveArray);
+            this.canvas.explosives.remove(this);
         }
         super.move();
     }
