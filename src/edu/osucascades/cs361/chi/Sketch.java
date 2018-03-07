@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class Sketch extends PApplet {
 
-    Screen s;
+    Screen screen;
+    Game game;
     public ArrayList<Explosive> explosives = new ArrayList<>();
     public ArrayList<Fort> forts = new ArrayList<>();
     public ArrayList<VehicleSuper> vehicles = new ArrayList<>();
@@ -23,41 +24,15 @@ public class Sketch extends PApplet {
         this.player = new Tank(0,600, this);
         this.alien = new Alien(0, 200, this);
 
-        s = new Screen(100000,4,this);
+        this.game = new Game(this);
+        this.screen = new Screen(100000,4,this);
     }
 
     public void draw() {
-        s.draw();
+        screen.draw();
         this.player.updateDirection(playerMovementDirection);
-        //cycle through entities
-        for (int i=0; i<this.vehicles.size(); i++) {
-            VehicleSuper entity = this.vehicles.get(i);
-            entity.draw();
-        }
-        //cycle through explosives
-        for (int i=0; i<this.explosives.size(); i++) {
-            Explosive projectile = this.explosives.get(i);
-            projectile.display();
-        }
-        //collision checking
-        ArrayList<Explosive> explosivesToKill = new ArrayList<>();
-        ArrayList<VehicleSuper> vehiclesToKill = new ArrayList<>();
-
-        for (Explosive explosive : this.explosives) {
-            for (VehicleSuper entity : this.vehicles) {
-                if (explosive.isCollision( explosive,  entity)) {
-                    vehiclesToKill.add(entity);
-                    explosivesToKill.add(explosive);
-                }
-            }
-        }
-        for (Explosive explosive : explosivesToKill) {
-            explosive.kill();
-        }
-        for (VehicleSuper entity : vehiclesToKill) {
-            entity.kill();
-        }
-
+        game.drawEntities();
+        game.checkForCollisions(explosives, vehicles);
     }
 
     public void keyReleased() {

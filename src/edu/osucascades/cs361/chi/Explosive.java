@@ -41,6 +41,7 @@ public class Explosive {
         }
         return b;
     }
+
     public void kill(){
         this.canvas.explosives.remove(this);
     }
