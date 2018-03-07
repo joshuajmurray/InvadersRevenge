@@ -29,7 +29,7 @@ public class Screen {
     }
 
     public void draw() {
-        displayCommonScreen();
+        displayCommonScreenValues();
 
         if(page == START) {
             displayStartScreen();
@@ -42,7 +42,7 @@ public class Screen {
         }
     }
 
-    private void displayCommonScreen() {
+    private void displayCommonScreenValues() {
         canvas.background(0, 0, 0);
         canvas.fill(255);
         canvas.textSize(36);
