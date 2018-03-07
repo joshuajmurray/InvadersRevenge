@@ -37,14 +37,10 @@ public class Screen {
         if(page == START) {
             canvas.text(START_TEXT, (canvas.width/2) - ((canvas.textWidth(START_TEXT))/2), (canvas.height/2));
         } else if(page == PLAY) {
-            canvas.text(SCORE_TEXT, 50, 50);
-            canvas.text(score, (50 + canvas.textWidth(SCORE_TEXT)), 50);
-            canvas.text(LIVES_TEXT, 50, (canvas.height - 50));
+            drawScoreLives();
             canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)), (canvas.height - 50));
         }else if(page == PAUSE) {
-            canvas.text(SCORE_TEXT, 50, 50);
-            canvas.text(score, (50 + canvas.textWidth(SCORE_TEXT)), 50);
-            canvas.text(LIVES_TEXT, 50, (canvas.height - 50));
+            drawScoreLives();
             canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)), (canvas.height - 50));
             canvas.text(PAUSE_TEXT, (canvas.width/2) - ((canvas.textWidth(PAUSE_TEXT))/2), (canvas.height/2));
         } else if(page == GAMEOVER) {
@@ -52,6 +48,12 @@ public class Screen {
             canvas.text(HIGH_SCORE_TEXT, (canvas.width/2) - ((canvas.textWidth(HIGH_SCORE_TEXT))/2), ((canvas.height/2) + 50));
             canvas.text(highScore, (canvas.width/2) + (canvas.textWidth(HIGH_SCORE_TEXT))/2, ((canvas.height/2) + 50));
         }
+    }
+
+    private void drawScoreLives() {
+        canvas.text(SCORE_TEXT, 50, 50);
+        canvas.text(score, (50 + canvas.textWidth(SCORE_TEXT)), 50);
+        canvas.text(LIVES_TEXT, 50, (canvas.height - 50));
     }
 
     public void updateScore(){
