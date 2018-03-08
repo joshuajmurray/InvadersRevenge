@@ -14,6 +14,7 @@ public class Screen {
     private int score;
     private int lives;
     private PApplet canvas;
+    private ScoreManager scoreData;
     public int page = 1;
     private static final int START = 0;
     private static final int PLAY = 1;
@@ -25,7 +26,8 @@ public class Screen {
         score = currentScore;
         lives = currentLives;
         canvas = currentP;
-        highScore = 155500;
+        scoreData = new ScoreManager();
+        highScore = scoreData.readScoresFromFile();
     }
 
     public void draw() {
