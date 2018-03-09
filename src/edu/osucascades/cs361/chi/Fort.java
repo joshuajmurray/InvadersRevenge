@@ -2,7 +2,7 @@ package edu.osucascades.cs361.chi;
 
 import processing.core.PApplet;
 
-public class Fort implements Collidable, Entity  {
+public class Fort implements Collidable, Drawable  {
 
     private int x;
     private int y;

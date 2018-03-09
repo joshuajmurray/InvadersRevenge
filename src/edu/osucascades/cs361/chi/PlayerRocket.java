@@ -1,6 +1,6 @@
 package edu.osucascades.cs361.chi;
 
-public class PlayerRocket implements Collidable, Entity {
+public class PlayerRocket implements Collidable, Drawable {
 
     private int x;
     private int y;

@@ -1,7 +1,7 @@
 package edu.osucascades.cs361.chi;
 
 
-public class Alien implements Collidable, Entity {
+public class Alien implements Collidable, Drawable {
     private Sketch canvas;
     private int width = 30;
     private int height = 30;

@@ -8,7 +8,7 @@ public class Sketch extends PApplet {
     Game game;
     Screen screen;
     public ArrayList<Collidable> Collidables = new ArrayList<>();
-    public ArrayList<Entity> entities  = new ArrayList<>();
+    public ArrayList<Drawable> entities  = new ArrayList<>();
 
     private int playerMovementDirection = 0;
     public Tank player;

@@ -1,6 +1,6 @@
 package edu.osucascades.cs361.chi;
 
-public class Tank implements Collidable, Entity {
+public class Tank implements Collidable, Drawable {
     private int x;
     private int y;
     private int width = 50;

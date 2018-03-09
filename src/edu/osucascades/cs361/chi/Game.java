@@ -11,10 +11,9 @@ public class Game {
     public void drawEntities(){
         //cycle through entities
         for (int i=0; i<this.canvas.entities.size(); i++) {
-            Entity entity = this.canvas.entities.get(i);
+            Drawable entity = this.canvas.entities.get(i);
             entity.draw();
         }
-
     }
     //creates two "to kill" arrays to hold objects marked to kill by the collision check method
     //then calls kill on each marked object
