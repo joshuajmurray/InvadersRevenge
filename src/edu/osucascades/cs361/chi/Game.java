@@ -4,14 +4,44 @@ import java.util.ArrayList;
 
 public class Game {
     private Sketch canvas;
+    Screen screen;
+    public ArrayList<Collidable> Collidables = new ArrayList<>();
+    public ArrayList<Drawable> entities  = new ArrayList<>();
+
+    public Tank player;
+
     Game(Sketch canvas){
         this.canvas = canvas;
+        setup();
+    }
+
+    public void setup(){
+        this.screen = new Screen(0,4,canvas);
+        this.player = new Tank(0,canvas.height - 100, canvas);
+        entities.add(this.player);
+        Collidables.add(this.player);
+
+        for (int i=0; i<6 ; i++){
+            Alien alien =  new Alien(i * 50, 200, canvas);
+            Collidables.add(alien);
+            entities.add(alien);
+        }
+        for(int i = 0; i < 4; i++) {
+            Fort fort = new Fort(canvas.width/4 * i + 200, canvas.height - 200, 100, canvas);
+            Collidables.add(fort);
+            entities.add(fort);
+        }
+    }
+    public void draw(){
+        screen.draw();
+        drawEntities();
+        checkForCollisions( Collidables);
     }
     // cycles through the vehicle and explosive arrays drawing each of them.
     public void drawEntities(){
         //cycle through entities
-        for (int i=0; i<this.canvas.entities.size(); i++) {
-            Drawable entity = this.canvas.entities.get(i);
+        for (int i=0; i<this.entities.size(); i++) {
+            Drawable entity = this.entities.get(i);
             entity.draw();
         }
     }

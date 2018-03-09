@@ -17,16 +17,16 @@ public class PlayerRocket implements Collidable, Drawable {
     }
 
     public void kill() {
-        this.canvas.Collidables.remove(this);
-        this.canvas.entities.remove(this);
-        canvas.player.setReloading(false);
+        this.canvas.game.Collidables.remove(this);
+        this.canvas.game.entities.remove(this);
+        canvas.game.player.setReloading(false);
     }
 
     public void move() {
         if (this.y < 0){
-            canvas.player.setReloading(false);
-            this.canvas.Collidables.remove(this);
-            this.canvas.entities.remove(this);
+            canvas.game.player.setReloading(false);
+            this.canvas.game.Collidables.remove(this);
+            this.canvas.game.entities.remove(this);
         }
         this.y = this.y + direction;
     }

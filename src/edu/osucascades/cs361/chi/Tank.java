@@ -10,11 +10,11 @@ public class Tank implements Collidable, Drawable {
     private boolean reloading;
 
     Tank(int x, int y, Sketch canvas){
-
         this.x = x;
         this.y = y;
         this.canvas = canvas;
     }
+
     public void move(){
         if (this.x < 0) {
             this.x = 0;
@@ -24,11 +24,13 @@ public class Tank implements Collidable, Drawable {
         }
         this.x = this.x + this.xSpeed;
     }
+
     public void draw(){
         this.move();
         canvas.rect(this.x, this.y, this.width, this.height);
         canvas.fill(255, 0, 0);
     }
+
     public void updateDirection(int direction){
         this.xSpeed = direction * 3;
     }
@@ -36,13 +38,13 @@ public class Tank implements Collidable, Drawable {
     public void shoot(Sketch canvas) {
         reloading = true;
         PlayerRocket rocket = new PlayerRocket(canvas, this, -10);
-        canvas.Collidables.add(rocket);
-        canvas.entities.add(rocket);
+        canvas.game.Collidables.add(rocket);
+        canvas.game.entities.add(rocket);
     }
 
     public void kill(){
-        this.canvas.Collidables.remove(this);
-        this.canvas.entities.remove(this);
+        this.canvas.game.Collidables.remove(this);
+        this.canvas.game.entities.remove(this);
     }
     public boolean checkCollisions(Collidable EntityA, Collidable EntityB){
         boolean b = false;
