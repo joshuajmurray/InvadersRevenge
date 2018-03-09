@@ -10,39 +10,39 @@ public class Game {
     // cycles through the vehicle and explosive arrays drawing each of them.
     public void drawEntities(){
         //cycle through entities
-        for (int i=0; i<this.canvas.vehicles.size(); i++) {
-            VehicleSuper entity = this.canvas.vehicles.get(i);
+        for (int i=0; i<this.canvas.entities.size(); i++) {
+            Entity entity = this.canvas.entities.get(i);
             entity.draw();
         }
-        //cycle through explosives
-        for (int i=0; i<this.canvas.explosives.size(); i++) {
-            Explosive projectile = this.canvas.explosives.get(i);
-            projectile.display();
-        }
+
     }
     //creates two "to kill" arrays to hold objects marked to kill by the collision check method
     //then calls kill on each marked object
-    public void checkForCollisions(ArrayList<Explosive> explosives, ArrayList<VehicleSuper> vehicles){
-        ArrayList<Explosive> explosivesToKill = new ArrayList<>();
-        ArrayList<VehicleSuper> vehiclesToKill = new ArrayList<>();
+    public void checkForCollisions(ArrayList<Collidable> Collidables){
+        ArrayList<Collidable> CollidablesToKill = new ArrayList<>();
 
-        collisionCheck(explosives, vehicles, explosivesToKill, vehiclesToKill);
-        for (Explosive explosive : explosivesToKill) {
-            explosive.kill();
-        }
-        for (VehicleSuper entity : vehiclesToKill) {
+        collisionCheck(Collidables, CollidablesToKill);
+
+        for (Collidable entity : CollidablesToKill) {
             entity.kill();
         }
     }
-    //calls explosive.isCollision for each explosive on each vehicle there is to check for collisions.
-    private void collisionCheck(ArrayList<Explosive> explosives, ArrayList<VehicleSuper> vehicles, ArrayList<Explosive> explosivesToKill, ArrayList<VehicleSuper> vehiclesToKill){
-        for (Explosive explosive : explosives) {
-            for (VehicleSuper entity : vehicles) {
-                if (explosive.isCollision( explosive,  entity)) {
-                    vehiclesToKill.add(entity);
-                    explosivesToKill.add(explosive);
+    private void collisionCheck( ArrayList<Collidable> Collidables, ArrayList<Collidable> CollidablesToKill){
+        for (int i=0; i< Collidables.size(); i++) {
+            Collidable entityA = Collidables.get(i);
+            for (int j= 0; j< Collidables.size(); j++) {
+                if (i == j){
+                    //do nothing if its comparing itself  otherwise everything will be marked to kill.
+                }
+                else {
+                    Collidable entityB = Collidables.get(j);
+                    if (entityA.checkCollisions(entityA, entityB)) {
+                        CollidablesToKill.add(entityA);
+                        CollidablesToKill.add(entityB);
+                    }
                 }
             }
         }
     }
 }
+

@@ -5,14 +5,13 @@ import java.util.ArrayList;
 
 public class Sketch extends PApplet {
 
-    Screen screen;
     Game game;
-    public ArrayList<Explosive> explosives = new ArrayList<>();
-    public ArrayList<Fort> forts = new ArrayList<>();
-    public ArrayList<VehicleSuper> vehicles = new ArrayList<>();
+    Screen screen;
+    public ArrayList<Collidable> Collidables = new ArrayList<>();
+    public ArrayList<Entity> entities  = new ArrayList<>();
 
     private int playerMovementDirection = 0;
-    private Tank player;
+    public Tank player;
 
     public void settings() {
         fullScreen();
@@ -20,13 +19,19 @@ public class Sketch extends PApplet {
 
     public void setup() {
         smooth();
-        this.player = new Tank(0,600, this);
-        for (int i=0; i<6 ; i++){
-            Alien alien = new Alien(i * 50, 200, this);
-        }
+        this.player = new Tank(0,this.height - 100, this);
+        entities.add(this.player);
+        Collidables.add(this.player);
 
+        for (int i=0; i<6 ; i++){
+            Alien alien =  new Alien(i * 50, 200, this);
+            Collidables.add(alien);
+            entities.add(alien);
+        }
         for(int i = 0; i < 4; i++) {
-            forts.add(new Fort(this.width/4 * i + 200, this.height - 200, 100, this));
+            Fort fort = new Fort(this.width/4 * i + 200, this.height - 200, 100, this);
+            Collidables.add(fort);
+            entities.add(fort);
         }
 
         this.game = new Game(this);
@@ -37,12 +42,7 @@ public class Sketch extends PApplet {
         screen.draw();
         this.player.updateDirection(playerMovementDirection);
         game.drawEntities();
-        game.checkForCollisions(explosives, vehicles);
-
-        //draw forts
-        for(int i = 0; i < this.forts.size(); i++) {
-            this.forts.get(i).draw();
-        }
+        game.checkForCollisions( Collidables);
     }
 
     public void keyReleased() {
