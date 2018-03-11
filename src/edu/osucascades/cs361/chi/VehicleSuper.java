@@ -24,21 +24,27 @@ public class VehicleSuper {
             if (this.x < 0) {
                 this.x = 0;
             }
+
             if (this.x > this.canvas.width) {
                 this.x = this.canvas.width;
             }
+
             this.x = this.x + this.xSpeed;
         }
-        if (this.child == 'a'){
+
+        if (this.child == 'a') {
             if (this.xSpeed == 1) {
                 this.x += 1;
+
                 if (this.x == canvas.width - this.width) {
                     this.xSpeed = 0;
                     this.y += 30;
                 }
             }
+
             if (this.xSpeed == 0) {
                 this.x -= 1;
+                
                 if (this.x == 0) {
                     this.xSpeed = 1;
                 }
@@ -49,9 +55,10 @@ public class VehicleSuper {
     public void draw() {
         if (this.child == 't'){
             this.move();
-        canvas.rect(this.x, this.y, this.width, this.height);
-        canvas.fill(255, 0, 0);
+            canvas.rect(this.x, this.y, this.width, this.height);
+            canvas.fill(255, 0, 0);
         }
+
         if (this.child == 'a'){
             canvas.fill(0, 255, 50);
             canvas.rect(x, y, width, height);
