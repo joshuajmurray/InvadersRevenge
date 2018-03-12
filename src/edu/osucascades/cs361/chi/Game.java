@@ -24,6 +24,7 @@ public class Game {
         entities.add(this.player);
         Collidables.add(this.player);
 
+        alienFleet.buildAlienFleet();
         for (int r = 0; r < alienFleet.aliens.length; r++) {
             for (int c = 0; c < alienFleet.aliens[r].length; c++) {
                 System.out.println(alienFleet.aliens[r][c].getX());
@@ -41,7 +42,7 @@ public class Game {
     public void draw(){
         screen.draw();
         drawEntities();
-        checkForCollisions( Collidables);
+        checkForCollisions(Collidables);
     }
     // cycles through the vehicle and explosive arrays drawing each of them.
     public void drawEntities(){

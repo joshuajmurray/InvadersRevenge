@@ -14,11 +14,9 @@ public class AlienFleet {
         this.x = x;
         this.y = y;
         this.canvas = canvas;
-
-        buildAlienFleet();
     }
 
-    private void buildAlienFleet() {
+    public void buildAlienFleet() {
         aliens = new Alien[ALIEN_FLEET_ROWS][ALIEN_FLEET_COLUMNS];
         for (int r = 0; r < ALIEN_FLEET_ROWS; r++) {
             for (int c = 0; c < ALIEN_FLEET_COLUMNS; c++) {
