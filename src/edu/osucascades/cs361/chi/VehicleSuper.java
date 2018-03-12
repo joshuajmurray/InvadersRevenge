@@ -62,6 +62,7 @@ public class VehicleSuper {
     public void kill(){
         this.canvas.vehicles.remove(this);
     }
+
     public void setReloading(boolean b) {
         this.reloading = b;
     }
@@ -69,12 +70,15 @@ public class VehicleSuper {
     public boolean isReloading() {
         return reloading;
     }
+
     public void setxSpeed(int x){
         this.xSpeed = x * 3;
     }
+
     public int getWidth() {
         return this.width;
     }
+
     public int getHeight(){
         return this.height;
     }
