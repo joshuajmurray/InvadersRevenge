@@ -45,7 +45,7 @@ public class Game {
             entity.draw();
         }
     }
-    //creates two "to kill" arrays to hold objects marked to kill by the collision check method
+    //creates one "to kill" array to hold objects marked to kill by the collision check method
     //then calls kill on each marked object
     public void checkForCollisions(ArrayList<Collidable> Collidables){
         ArrayList<Collidable> CollidablesToKill = new ArrayList<>();
