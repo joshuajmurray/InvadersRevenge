@@ -15,7 +15,7 @@ public class ScoreManager {
     public int readScoresFromFile() {
         try {
             String[] test1 = score.loadStrings("highScore.txt");
-            String[] test = {"0"};// = score.loadStrings("highScore.txt");
+            String[] test =  score.loadStrings("highScore.txt");
             int arraySize = test.length;
             System.out.println("there are " + arraySize + " lines");
 
