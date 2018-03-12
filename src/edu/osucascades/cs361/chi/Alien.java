@@ -37,7 +37,7 @@ public class Alien implements Collidable, Drawable {
 
     public void kill(){
         this.canvas.game.screen.updateScore();
-        this.canvas.game.Collidables.remove(this);
+        this.canvas.game.collidables.remove(this);
         this.canvas.game.entities.remove(this);
 
     }

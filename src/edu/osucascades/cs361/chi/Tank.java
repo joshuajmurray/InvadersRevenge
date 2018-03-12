@@ -40,12 +40,12 @@ public class Tank implements Collidable, Drawable {
     public void shoot(Sketch canvas) {
         reloading = true;
         PlayerRocket rocket = new PlayerRocket(canvas, this, -10);
-        canvas.game.Collidables.add(rocket);
+        canvas.game.collidables.add(rocket);
         canvas.game.entities.add(rocket);
     }
 
     public void kill(){
-        this.canvas.game.Collidables.remove(this);
+        this.canvas.game.collidables.remove(this);
         this.canvas.game.entities.remove(this);
     }
     public boolean checkCollisions(Collidable EntityA, Collidable EntityB){

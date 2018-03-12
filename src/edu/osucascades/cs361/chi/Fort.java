@@ -26,7 +26,7 @@ public class Fort implements Collidable, Drawable  {
     public void kill() {
         decay(10);
         if (this.lifeRemaining == 0){
-            this.canvas.game.Collidables.remove(this);
+            this.canvas.game.collidables.remove(this);
             this.canvas.game.entities.remove(this);
         }
     }
