@@ -9,6 +9,7 @@ public class Game {
     public ArrayList<Drawable> entities  = new ArrayList<>();
 
     public Tank player;
+    public AlienFleet alienFleet;
 
     Game(Sketch canvas){
         this.canvas = canvas;
@@ -18,14 +19,19 @@ public class Game {
     public void setup(){
         this.screen = new Screen(0,4,canvas);
         this.player = new Tank(0,canvas.height - 100, canvas);
+        this.alienFleet = new AlienFleet(0, 200, canvas);
+
         entities.add(this.player);
         Collidables.add(this.player);
 
-        for (int i=0; i<6 ; i++){
-            Alien alien =  new Alien(i * 50, 200, canvas);
-            Collidables.add(alien);
-            entities.add(alien);
+        for (int r = 0; r < alienFleet.aliens.length; r++) {
+            for (int c = 0; c < alienFleet.aliens[r].length; c++) {
+                System.out.println(alienFleet.aliens[r][c].getX());
+                Collidables.add(alienFleet.aliens[r][c]);
+                entities.add(alienFleet.aliens[r][c]);
+            }
         }
+
         for(int i = 0; i < 4; i++) {
             Fort fort = new Fort(canvas.width/4 * i + 200, canvas.height - 200, 100, canvas);
             Collidables.add(fort);
