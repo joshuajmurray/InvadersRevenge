@@ -53,7 +53,7 @@ public class Game {
         collisionCheck(collidables, collidablesToKill);
 
         for (Collidable entity : collidablesToKill) {
-            entity.kill();
+            entity.kill(collidables, this.entities);
         }
     }
     private void collisionCheck( ArrayList<Collidable> collidables, ArrayList<Collidable> collidablesToKill){

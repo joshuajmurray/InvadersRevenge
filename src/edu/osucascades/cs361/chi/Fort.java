@@ -2,6 +2,8 @@ package edu.osucascades.cs361.chi;
 
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+
 public class Fort implements Collidable, Drawable  {
 
     private int x;
@@ -23,11 +25,13 @@ public class Fort implements Collidable, Drawable  {
         lifeRemaining -= amount;
     }
 
-    public void kill() {
+
+
+    public void kill(ArrayList collidables, ArrayList entities) {
         decay(10);
         if (this.lifeRemaining == 0){
-            this.canvas.game.collidables.remove(this);
-            this.canvas.game.entities.remove(this);
+            collidables.remove(this);
+            entities.remove(this);
         }
     }
 
