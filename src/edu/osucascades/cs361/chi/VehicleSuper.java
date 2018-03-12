@@ -66,40 +66,39 @@ public class VehicleSuper {
         }
     }
 
-    public void kill(){
-        this.canvas.vehicles.remove(this);
-    }
-    public void setReloading(boolean b) {
-        this.reloading = b;
-    }
-
-    public boolean isReloading() {
-        return reloading;
-    }
-    public void setxSpeed(int x){
-        this.xSpeed = x * 3;
+    public void setWidth(int width) {
+        this.width = width;
     }
     public int getWidth() {
         return this.width;
+    }
+    public void setHeight(int height) {
+        this.height = height;
     }
     public int getHeight(){
         return this.height;
     }
 
+    public int getX() {
+        return x;
+    }
     public int getY() {
         return y;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setxSpeed(int x){
+        this.xSpeed = x * 3;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void kill(){
+        this.canvas.vehicles.remove(this);
     }
 
-    public int getX() {
-        return x;
+    public boolean isReloading() {
+        return reloading;
+    }
+    public void setReloading(boolean b) {
+        this.reloading = b;
     }
 
 }
