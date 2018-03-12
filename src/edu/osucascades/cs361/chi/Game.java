@@ -24,14 +24,7 @@ public class Game {
         entities.add(this.player);
         collidables.add(this.player);
 
-        alienFleet.buildAlienFleet();
-        for (int r = 0; r < alienFleet.aliens.length; r++) {
-            for (int c = 0; c < alienFleet.aliens[r].length; c++) {
-                System.out.println(alienFleet.aliens[r][c].getX());
-                collidables.add(alienFleet.aliens[r][c]);
-                entities.add(alienFleet.aliens[r][c]);
-            }
-        }
+        alienFleet.buildAlienFleet(collidables, entities);
 
         for(int i = 0; i < 4; i++) {
             Fort fort = new Fort(canvas.width/4 * i + 200, canvas.height - 200, 100, canvas);

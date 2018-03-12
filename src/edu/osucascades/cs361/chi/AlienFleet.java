@@ -10,17 +10,21 @@ public class AlienFleet {
     private static final int ALIEN_FLEET_COLUMNS = 6;  //Real game uses 11
     public Alien[][] aliens;
 
+
     AlienFleet(int x, int y, Sketch canvas) {
         this.x = x;
         this.y = y;
         this.canvas = canvas;
     }
 
-    public void buildAlienFleet() {
+    public void buildAlienFleet(ArrayList<Collidable> collidables, ArrayList<Drawable> entities) {
         aliens = new Alien[ALIEN_FLEET_ROWS][ALIEN_FLEET_COLUMNS];
         for (int r = 0; r < ALIEN_FLEET_ROWS; r++) {
             for (int c = 0; c < ALIEN_FLEET_COLUMNS; c++) {
-                aliens[r][c] = new Alien(c * 50, y, canvas);
+                Alien a = new Alien(c * 50, y, canvas);
+                aliens[r][c] = a;
+                collidables.add(a);
+                entities.add(a);
             }
         }
     }
