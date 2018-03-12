@@ -13,19 +13,18 @@ public class ScoreManager {
     }
 
     public int readScoresFromFile() {
+        int hiScore = 0;
         try {
-            String[] test1 = score.loadStrings("highScore.txt");
             String[] test =  score.loadStrings("highScore.txt");
             int arraySize = test.length;
+            //TODO sort array for highest score first
             System.out.println("there are " + arraySize + " lines");
-
             for (int i = 0; i < arraySize; i++) {
-                println(test[i]);
+                String[] nameScoreSplit = test[i].split(" ");
+                hiScore = Integer.parseInt(nameScoreSplit[1]);
             }
-            //sort array for highest score first
-            return Integer.parseInt(test[0]);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return 0;
+        return hiScore;
     }}
