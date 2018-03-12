@@ -1,39 +1,62 @@
 package edu.osucascades.cs361.chi;
 
-public class PlayerRocket extends Explosive {
+public class PlayerRocket implements Collidable, Drawable {
 
+    private int x;
+    private int y;
+    private int width = 3;
+    private int height = 10;
+    private int direction;
     private Sketch canvas;
-    private Tank player;
 
-    PlayerRocket(Sketch canvas, Tank player) {
-        super(canvas,-10, player);
-        super.setHeight(10);
-        super.setWidth(3);
+    PlayerRocket(Sketch canvas, Tank player, int direction) {
+        this.x = player.getX() + player.getWidth()/2;
+        this.y = player.getY() - player.getHeight() - 5;
         this.canvas = canvas;
-        this.player = player;
-        this.canvas.explosives.add(this);
-    }
-
-    public void launch(Tank p) {
-        this.player.setReloading(true);
-        super.launch();
+        this.direction = direction;
     }
 
     public void kill() {
-        super.kill();
-        player.setReloading(false);
+        this.canvas.game.Collidables.remove(this);
+        this.canvas.game.entities.remove(this);
+        canvas.game.player.setReloading(false);
     }
 
     public void move() {
-        if (super.getY() < 0){
-            this.player.setReloading(false);
-            this.canvas.explosives.remove(this);
+        if (this.y < 0){
+            canvas.game.player.setReloading(false);
+            this.canvas.game.Collidables.remove(this);
+            this.canvas.game.entities.remove(this);
         }
-        super.move();
+        this.y = this.y + direction;
     }
 
-    public void display() {
-        super.display();
+    public void draw() {
+        this.move();
+        canvas.rect(this.x, this.y, width, height);
+        canvas.fill(255);
+    }
+    public boolean checkCollisions(Collidable EntityA, Collidable EntityB){
+        boolean b = false;
+        if (EntityA.getX() >= EntityB.getX() && EntityA.getX() +  EntityA.getWidth() <= EntityB.getX() + EntityB. getWidth()) {
+            if (EntityA.getY() >= EntityB.getY() && EntityA.getY()  + EntityA.getHeight() <= EntityB.getY() +  EntityB.getHeight()) {
+                b = true;
+            }
+        }
+        return b;
+    }
+    public int getWidth() {
+        return this.width;
+    }
+    public int getHeight(){
+        return this.height;
     }
 
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
 }

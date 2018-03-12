@@ -1,56 +1,30 @@
 package edu.osucascades.cs361.chi;
 import processing.core.PApplet;
 
-import java.util.ArrayList;
-
 public class Sketch extends PApplet {
 
-    Screen screen;
     Game game;
-    public ArrayList<Explosive> explosives = new ArrayList<>();
-    public ArrayList<Fort> forts = new ArrayList<>();
-    public ArrayList<VehicleSuper> vehicles = new ArrayList<>();
-
     private int playerMovementDirection = 0;
-    private Tank player;
 
     public void settings() {
         fullScreen();
     }
 
     public void setup() {
-        smooth();
-        this.player = new Tank(0,600, this);
-        for (int i=0; i<6 ; i++){
-            Alien alien = new Alien(i * 50, 200, this);
-        }
-
-        for(int i = 0; i < 4; i++) {
-            forts.add(new Fort(this.width/4 * i + 200, this.height - 200, 100, this));
-        }
-
         this.game = new Game(this);
-        this.screen = new Screen(0,4,this);
     }
 
     public void draw() {
-        screen.draw();
-        this.player.updateDirection(playerMovementDirection);
-        game.drawEntities();
-        game.checkForCollisions(explosives, vehicles);
-
-        //draw forts
-        for(int i = 0; i < this.forts.size(); i++) {
-            this.forts.get(i).draw();
-        }
+        game.player.updateDirection(playerMovementDirection);
+        game.draw();
     }
 
     public void keyReleased() {
         if (key == 'a' || key == 'd' ) {
             this.playerMovementDirection = 0;
         }
-        if (key == ' ' && !this.player.isReloading()) {
-            this.player.shoot(this);
+        if (key == ' ' && !game.player.isReloading()) {
+            game.player.shoot(this);
         }
     }
     public void keyPressed() {
