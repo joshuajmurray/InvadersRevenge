@@ -9,7 +9,7 @@ public class Game {
     public ArrayList<Drawable> entities  = new ArrayList<>();
 
     public Tank player;
-    public AlienFleet alienFleet;
+    public AlienArmy alienArmy;
 
     Game(Sketch canvas){
         this.canvas = canvas;
@@ -19,12 +19,12 @@ public class Game {
     public void setup(){
         this.screen = new Screen(0,4,canvas);
         this.player = new Tank(0,canvas.height - 100, canvas);
-        this.alienFleet = new AlienFleet(0, 200, canvas);
+        this.alienArmy = new AlienArmy(0, 200, canvas);
 
         entities.add(this.player);
         collidables.add(this.player);
 
-        alienFleet.buildAlienFleet(collidables, entities);
+        alienArmy.buildArmy(collidables, entities);
 
         for(int i = 0; i < 4; i++) {
             Fort fort = new Fort(canvas.width/4 * i + 200, canvas.height - 200, 100, canvas);
