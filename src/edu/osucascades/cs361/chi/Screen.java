@@ -15,7 +15,7 @@ public class Screen {
     private int lives;
     private PApplet canvas;
     private ScoreManager scoreData;
-    public int page = 1;
+    public int page = 1;//TODO setup as a global to select screens
     private static final int START = 0;
     private static final int PLAY = 1;
     private static final int PAUSE = 2;
@@ -26,7 +26,7 @@ public class Screen {
         score = currentScore;
         lives = currentLives;
         canvas = currentP;
-        scoreData = new ScoreManager();
+        scoreData = new ScoreManager(canvas);
         highScore = scoreData.readScoresFromFile();
     }
 

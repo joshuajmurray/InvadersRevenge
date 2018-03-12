@@ -8,12 +8,14 @@ public class ScoreManager {
 
     private PApplet score;
 
-    ScoreManager() {
+    ScoreManager(PApplet currentP) {
+        score = currentP;
     }
 
     public int readScoresFromFile() {
         try {
-            String[] test = score.loadStrings("highScore.txt");
+            String[] test1 = score.loadStrings("highScore.txt");
+            String[] test = {"0"};// = score.loadStrings("highScore.txt");
             int arraySize = test.length;
             System.out.println("there are " + arraySize + " lines");
 
