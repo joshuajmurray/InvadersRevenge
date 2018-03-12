@@ -11,14 +11,13 @@ public class Fort implements Collidable, Drawable  {
     private int width = 40;
     private int height = 30;
     private int lifeRemaining;
-    private PApplet p;
     public Sketch canvas;
 
-    public Fort(int x, int y, int lifeRemaining, PApplet p) {
+    public Fort(int x, int y, int lifeRemaining, Sketch p) {
         this.x = x;
         this.y = y;
         this.lifeRemaining = lifeRemaining;
-        this.p = p;
+        this.canvas = p;
     }
 
     private void decay(int amount) {
@@ -27,17 +26,17 @@ public class Fort implements Collidable, Drawable  {
 
 
 
-    public void kill(ArrayList collidables, ArrayList entities) {
+    public void kill() {
         decay(10);
         if (this.lifeRemaining == 0){
-            collidables.remove(this);
-            entities.remove(this);
+            this.canvas.game.collidables.remove(this);
+            this.canvas.game.entities.remove(this);
         }
     }
 
     public void draw() {
-        p.fill(255, 0 , 0);
-        p.rect(x, y, width, height);
+        canvas.fill(255, 0 , 0);
+        canvas.rect(x, y, width, height);
     }
 
     @Override
