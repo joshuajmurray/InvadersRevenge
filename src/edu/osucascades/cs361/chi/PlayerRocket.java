@@ -1,5 +1,7 @@
 package edu.osucascades.cs361.chi;
 
+import java.util.ArrayList;
+
 public class PlayerRocket implements Collidable, Drawable {
 
     private int x;
@@ -16,17 +18,15 @@ public class PlayerRocket implements Collidable, Drawable {
         this.direction = direction;
     }
 
-    public void kill() {
-        this.canvas.game.collidables.remove(this);
-        this.canvas.game.entities.remove(this);
+    public void kill(ArrayList collidables, ArrayList entities) {
+        collidables.remove(this);
+        entities.remove(this);
         canvas.game.player.setReloading(false);
     }
 
     public void move() {
         if (this.y < 0){
-            canvas.game.player.setReloading(false);
-            this.canvas.game.collidables.remove(this);
-            this.canvas.game.entities.remove(this);
+            kill(this.canvas.game.collidables, this.canvas.game.entities);
         }
         this.y = this.y + direction;
     }
