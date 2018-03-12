@@ -15,6 +15,12 @@ public class Tank implements Collidable, Drawable {
         this.canvas = canvas;
     }
 
+    public void draw(){
+        this.move();
+        canvas.rect(this.x, this.y, this.width, this.height);
+        canvas.fill(255, 0, 0);
+    }
+
     public void move(){
         if (this.x < 0) {
             this.x = 0;
@@ -25,11 +31,7 @@ public class Tank implements Collidable, Drawable {
         this.x = this.x + this.xSpeed;
     }
 
-    public void draw(){
-        this.move();
-        canvas.rect(this.x, this.y, this.width, this.height);
-        canvas.fill(255, 0, 0);
-    }
+
 
     public void updateDirection(int direction){
         this.xSpeed = direction * 3;
