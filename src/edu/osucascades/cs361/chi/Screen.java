@@ -10,17 +10,16 @@ public class Screen {
     private static final String PAUSE_TEXT = "PAUSE";
     private static final String GAME_OVER_TEXT = "GAME OVER";
     private static final String HIGH_SCORE_TEXT = "High Score: ";
+    private static final int START = 0;
+    private static final int PLAY = 1;
+    private static final int PAUSE = 2;
+    private static final int GAMEOVER = 3;
     private int highScore;
     private int score;
     private int lives;
     private PApplet canvas;
     private ScoreManager scoreData;
     public int page = 1;//TODO setup as a global to select screens
-    private static final int START = 0;
-    private static final int PLAY = 1;
-    private static final int PAUSE = 2;
-    private static final int GAMEOVER = 3;
-
 
     Screen(int currentScore, int currentLives, PApplet currentP) {
         score = currentScore;
@@ -28,6 +27,7 @@ public class Screen {
         canvas = currentP;
         scoreData = new ScoreManager(canvas);
         highScore = scoreData.readScoresFromFile();
+        scoreData.setHighScore("test5 5038");//for testing only
     }
 
     public void draw() {

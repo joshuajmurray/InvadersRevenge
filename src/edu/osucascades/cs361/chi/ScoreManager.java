@@ -2,24 +2,26 @@ package edu.osucascades.cs361.chi;
 
 import processing.core.PApplet;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static processing.core.PApplet.println;
 
 public class ScoreManager {
+    public static final String FILE_NAME = "highScore.txt";
+    public static final String FULL_FILE_PATH = "./data/highScore.txt";
 
-    private PApplet score;
+    private PApplet p;
     int hiScore = 0;
     String playerName = "";
 
     ScoreManager(PApplet currentP) {
-        score = currentP;
+        p = currentP;
     }
 
     public int readScoresFromFile() {
         try {
-            println(getHighScore(score.loadStrings("highScore.txt")));
+            println(getHighScore(p.loadStrings(FILE_NAME)));//TODO load highscore into system
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -39,6 +41,23 @@ public class ScoreManager {
             }
         }
         return playerName + " " + hiScore;
+    }
+
+    public void setHighScore(String newHighScore) {
+        String[] nameScoreSplit = newHighScore.split(" ");
+        int tempScore = Integer.parseInt(nameScoreSplit[1]);
+        println(tempScore);
+        if(hiScore < tempScore) {
+            FileWriter output = null;
+            try {
+                output = new FileWriter(FULL_FILE_PATH, true);
+                output.write(newHighScore + "\n");
+                output.close();
+            }
+            catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }
