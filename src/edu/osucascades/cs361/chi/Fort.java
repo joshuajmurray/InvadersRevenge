@@ -11,9 +11,9 @@ public class Fort implements Collidable, Drawable  {
     private int width = 40;
     private int height = 30;
     private int lifeRemaining;
-    public Sketch canvas;
+    private Sketch canvas;
 
-    public Fort(int x, int y, int lifeRemaining, Sketch p) {
+    Fort(int x, int y, int lifeRemaining, Sketch p) {
         this.x = x;
         this.y = y;
         this.lifeRemaining = lifeRemaining;
@@ -26,11 +26,11 @@ public class Fort implements Collidable, Drawable  {
 
 
 
-    public void kill() {
+    public void kill(ArrayList collidables, ArrayList entities) {
         decay(10);
         if (this.lifeRemaining == 0){
-            this.canvas.game.collidables.remove(this);
-            this.canvas.game.entities.remove(this);
+            collidables.remove(this);
+            entities.remove(this);
         }
     }
 

@@ -8,6 +8,6 @@ public interface Collidable {
      int getY();
      int getHeight();
      int getWidth();
-     void kill();
+     void kill(ArrayList collidable, ArrayList entities);
 }
 

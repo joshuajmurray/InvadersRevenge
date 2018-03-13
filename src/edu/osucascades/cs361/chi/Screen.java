@@ -2,7 +2,7 @@ package edu.osucascades.cs361.chi;
 
 import processing.core.PApplet;
 
-public class Screen {
+public class Screen implements Drawable {
     public static final String START_TEXT = "Press start to begin";
     private static final String PLAY_TEXT = "Invaders Revenge!";
     private static final String SCORE_TEXT = "Score: ";

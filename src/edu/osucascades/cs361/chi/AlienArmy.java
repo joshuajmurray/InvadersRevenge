@@ -8,7 +8,7 @@ public class AlienArmy {
     private int y;
     private static final int ALIEN_ARMY_ROWS = 2;    //Real game uses 5
     private static final int ALIEN_ARMY_COLUMNS = 6;  //Real game uses 11
-    public Alien[][] aliens;
+    private Alien[][] aliens;
 
 
     AlienArmy(int x, int y, Sketch canvas) {

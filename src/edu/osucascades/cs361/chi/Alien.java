@@ -1,6 +1,8 @@
 package edu.osucascades.cs361.chi;
 
 
+import java.util.ArrayList;
+
 public class Alien implements Collidable, Drawable {
     private Sketch canvas;
     private int width = 30;
@@ -23,7 +25,7 @@ public class Alien implements Collidable, Drawable {
         move();
     }
 
-    public void move() {
+    private void move() {
         if (this.x == canvas.width - this.width) {
             this.xSpeed = -1;
             this.y += height;
@@ -35,10 +37,10 @@ public class Alien implements Collidable, Drawable {
         this.x += xSpeed;
     }
 
-    public void kill(){
-        this.canvas.game.screen.updateScore();
-        this.canvas.game.collidables.remove(this);
-        this.canvas.game.entities.remove(this);
+    public void kill(ArrayList collidables, ArrayList entities){
+        this.canvas.game.getScreen().updateScore();
+        collidables.remove(this);
+        entities.remove(this);
 
     }
     public boolean checkCollisions(Collidable EntityA, Collidable EntityB){

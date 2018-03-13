@@ -4,26 +4,27 @@ import java.util.ArrayList;
 
 public class Game {
     private Sketch canvas;
-    Screen screen;
-    public ArrayList<Collidable> collidables = new ArrayList<>();
-    public ArrayList<Drawable> entities  = new ArrayList<>();
+    private Screen screen;
+    private ArrayList<Collidable> collidables = new ArrayList<>();
+    private ArrayList<Drawable> entities  = new ArrayList<>();
 
-    public Tank player;
-    public AlienArmy alienArmy;
+    private Tank player;
+    private AlienArmy alienArmy;
 
     Game(Sketch canvas){
         this.canvas = canvas;
         setup();
     }
 
-    public void setup(){
+    private void setup(){
         this.screen = new Screen(0,4,canvas);
-        this.player = new Tank(0,canvas.height - 100, canvas);
-        this.alienArmy = new AlienArmy(0, 200, canvas);
+        entities.add(screen);
 
+        this.player = new Tank(0,canvas.height - 100, canvas);
         entities.add(this.player);
         collidables.add(this.player);
 
+        this.alienArmy = new AlienArmy(0, 200, canvas);
         alienArmy.buildArmy(collidables, entities);
 
         for(int i = 0; i < 4; i++) {
@@ -33,38 +34,36 @@ public class Game {
         }
     }
     public void draw(){
-        screen.draw();
         drawEntities();
         checkForCollisions(collidables);
     }
-    // cycles through the vehicle and explosive arrays drawing each of them.
-    public void drawEntities(){
-        //cycle through entities
-        for (int i=0; i<this.entities.size(); i++) {
-            Drawable entity = this.entities.get(i);
+    // cycles through the vehicles and explosives drawing each of them.
+    private void drawEntities(){
+
+        for (int i = 0; i < entities.size(); i ++) {
+            Drawable entity = entities.get(i);
             entity.draw();
         }
     }
     //creates one "to kill" array to hold objects marked to kill by the collision check method
     //then calls kill on each marked object
-    public void checkForCollisions(ArrayList<Collidable> collidables){
-        ArrayList<Collidable> collidablesToKill = new ArrayList<>();
-
-        collisionCheck(collidables, collidablesToKill);
+    private void checkForCollisions(ArrayList<Collidable> collidables){
+        ArrayList<Collidable> collidablesToKill = collisionCheck(collidables);
 
         for (Collidable entity : collidablesToKill) {
-            entity.kill();
+            entity.kill(collidables, this.entities);
         }
     }
-    private void collisionCheck( ArrayList<Collidable> collidables, ArrayList<Collidable> collidablesToKill){
-        for (int i=0; i< collidables.size(); i++) {
-            Collidable entityA = collidables.get(i);
-            for (int j= 0; j< collidables.size(); j++) {
-                if (i == j){
+    private ArrayList<Collidable> collisionCheck( ArrayList<Collidable> collidables){
+        ArrayList<Collidable> collidablesToKill = new ArrayList<>();
+
+        for (Collidable entityA : collidables) {
+            for (Collidable entityB : collidables) {
+
+                if (entityA == entityB){
                     //do nothing if its comparing itself  otherwise everything will be marked to kill.
                 }
                 else {
-                    Collidable entityB = collidables.get(j);
                     if (entityA.checkCollisions(entityA, entityB)) {
                         collidablesToKill.add(entityA);
                         collidablesToKill.add(entityB);
@@ -72,6 +71,23 @@ public class Game {
                 }
             }
         }
+        return collidablesToKill;
+    }
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public Tank getPlayer() {
+        return player;
+    }
+
+    public ArrayList<Collidable> getCollidables() {
+        return collidables;
+    }
+
+    public ArrayList<Drawable> getEntities() {
+        return entities;
     }
 }
 

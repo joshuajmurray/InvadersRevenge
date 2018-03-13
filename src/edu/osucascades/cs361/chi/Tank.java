@@ -1,5 +1,7 @@
 package edu.osucascades.cs361.chi;
 
+import java.util.ArrayList;
+
 public class Tank implements Collidable, Drawable {
     private int x;
     private int y;
@@ -21,7 +23,7 @@ public class Tank implements Collidable, Drawable {
         canvas.fill(255, 0, 0);
     }
 
-    public void move(){
+    private void move(){
         if (this.x < 0) {
             this.x = 0;
         }
@@ -40,13 +42,13 @@ public class Tank implements Collidable, Drawable {
     public void shoot(Sketch canvas) {
         reloading = true;
         PlayerRocket rocket = new PlayerRocket(canvas, this, -10);
-        canvas.game.collidables.add(rocket);
-        canvas.game.entities.add(rocket);
+        canvas.game.getCollidables().add(rocket);
+        canvas.game.getEntities().add(rocket);
     }
 
-    public void kill(){
-        this.canvas.game.collidables.remove(this);
-        this.canvas.game.entities.remove(this);
+    public void kill(ArrayList collidables, ArrayList entities){
+        collidables.remove(this);
+        entities.remove(this);
     }
     public boolean checkCollisions(Collidable EntityA, Collidable EntityB){
         boolean b = false;
