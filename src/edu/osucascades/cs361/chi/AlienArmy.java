@@ -7,21 +7,25 @@ public class AlienArmy {
     private Sketch canvas;
     private int x;
     private int y;
-    private Fleet[] fleets;
+    private ArrayList<Fleet> fleets;
 
 
     AlienArmy(int x, int y, Sketch canvas) {
         this.x = x;
         this.y = y;
         this.canvas = canvas;
-        this.fleets = new Fleet[ALIEN_FLEET_COUNT];
+        this.fleets = new ArrayList<>();
     }
 
     public void buildArmy(ArrayList<Collidable> collidables, ArrayList<Drawable> entities) {
         for (int i = 0; i < ALIEN_FLEET_COUNT; i++) {
-            fleets[i] = new Fleet(x, y + (i*50), canvas);
-            fleets[i].buildFleet(collidables);
-            entities.add(fleets[i]);
+            Fleet f = new Fleet(x, y + (i*50), canvas);
+            f.buildFleet(collidables);
+            entities.add(f);
         }
+    }
+
+    public void removeAlienFromFleet(Alien alien) {
+
     }
 }

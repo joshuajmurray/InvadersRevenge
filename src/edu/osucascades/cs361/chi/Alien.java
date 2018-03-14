@@ -15,6 +15,7 @@ public class Alien implements Collidable, Drawable {
     private int x;
     private int y;
     private int direction;
+    private boolean dead;
     private boolean reloading;
     private PImage sprite;
 
@@ -24,6 +25,7 @@ public class Alien implements Collidable, Drawable {
         this.y = y;
         this.canvas = canvas;
         this.direction = RIGHT;
+        this.dead = false;
         this.sprite = this.canvas.loadImage(chooseRandomAlienImage());
     }
 
@@ -72,8 +74,7 @@ public class Alien implements Collidable, Drawable {
     public void kill(ArrayList collidables, ArrayList entities) {
         this.canvas.game.getScreen().updateScore();
         collidables.remove(this);
-        entities.remove(this);
-
+        this.dead = true;
     }
 
     public boolean isReloading() {
@@ -102,5 +103,9 @@ public class Alien implements Collidable, Drawable {
     }
     public int getY() {
         return y;
+    }
+
+    public boolean getIsDead() {
+        return this.dead;
     }
 }

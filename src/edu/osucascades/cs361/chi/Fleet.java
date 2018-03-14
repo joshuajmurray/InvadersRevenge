@@ -9,28 +9,31 @@ public class Fleet implements Drawable {
     private Sketch canvas;
     private int x;
     private int y;
-    private Alien[] aliens;
+    private ArrayList<Alien> aliens;
 
 
     Fleet(int x, int y, Sketch canvas) {
         this.x = x;
         this.y = y;
         this.canvas = canvas;
-        this.aliens = new Alien[ALIEN_COUNT];
+        this.aliens = new ArrayList<>();
     }
 
     public void buildFleet(ArrayList<Collidable> collidables) {
         for (int i = 0; i < ALIEN_COUNT; i++) {
-            aliens[i] = new Alien(x + (i*50), y, canvas);
-            collidables.add(aliens[i]);
+            Alien a = new Alien(x + (i*50), y, canvas);
+            aliens.add(a);
+            collidables.add(a);
         }
     }
 
     public void draw() {
         checkForDirectionChange();
         for (Alien alien : aliens) {
-            alien.draw();
-            alien.move();
+            if (!isAlienDead(alien)) {
+                alien.draw();
+                alien.move();
+            }
         }
     }
 
@@ -47,10 +50,18 @@ public class Fleet implements Drawable {
     }
 
     private boolean isTouchingRightEdge() {
-        return aliens[ALIEN_COUNT - 1].getX() == canvas.width - aliens[ALIEN_COUNT - 1].getWidth();
+        return aliens.get(aliens.size() - 1).getX() == canvas.width - aliens.get(aliens.size() - 1).getWidth();
     }
 
     private boolean isTouchingLeftEdge() {
-        return aliens[0].getX() == 0;
+        return aliens.get(0).getX() == 0;
+    }
+
+    private boolean isAlienDead(Alien alien) {
+        if (alien.getIsDead()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
