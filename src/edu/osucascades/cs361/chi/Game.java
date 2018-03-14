@@ -4,34 +4,20 @@ import java.util.ArrayList;
 
 public class Game {
     private Sketch canvas;
-<<<<<<< HEAD
-    public ArrayList<Collidable> collidables = new ArrayList<>();
-    public ArrayList<Drawable> entities  = new ArrayList<>();
-
-    public Tank player;
-    public AlienArmy alienArmy;
-    public ScoreManager scoreManager;
-    public Screen screen;
-=======
+    private ScoreManager scoreManager;
     private Screen screen;
     private ArrayList<Collidable> collidables = new ArrayList<>();
     private ArrayList<Drawable> entities  = new ArrayList<>();
-
     private Tank player;
     private AlienArmy alienArmy;
->>>>>>> d8f8feb0c3631a259e1dde68f2a6adab7ce9021c
 
     Game(Sketch canvas){
         this.canvas = canvas;
         setup();
     }
 
-<<<<<<< HEAD
-    public void setup(){
-        this.scoreManager = new ScoreManager(canvas);
-=======
     private void setup(){
->>>>>>> d8f8feb0c3631a259e1dde68f2a6adab7ce9021c
+        this.scoreManager = new ScoreManager(canvas);
         this.screen = new Screen(0,4,canvas);
         entities.add(screen);
 
