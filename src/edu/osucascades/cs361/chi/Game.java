@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public class Game {
     private Sketch canvas;
-    Screen screen;
     public ArrayList<Collidable> collidables = new ArrayList<>();
     public ArrayList<Drawable> entities  = new ArrayList<>();
 
     public Tank player;
     public AlienArmy alienArmy;
+    public ScoreManager scoreManager;
+    public Screen screen;
 
     Game(Sketch canvas){
         this.canvas = canvas;
@@ -17,6 +18,7 @@ public class Game {
     }
 
     public void setup(){
+        this.scoreManager = new ScoreManager(canvas);
         this.screen = new Screen(0,4,canvas);
         this.player = new Tank(0,canvas.height - 100, canvas);
         this.alienArmy = new AlienArmy(0, 200, canvas);
