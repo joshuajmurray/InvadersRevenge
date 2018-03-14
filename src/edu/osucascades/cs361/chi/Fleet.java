@@ -32,13 +32,14 @@ public class Fleet implements Drawable {
         for (Alien alien : aliens) {
             if (!isAlienDead(alien)) {
                 alien.draw();
-                alien.move();
             }
+            alien.move();
         }
     }
 
     private void checkForDirectionChange() {
         if (isTouchingLeftEdge() || isTouchingRightEdge()) {
+            System.out.println("Touched Edge");
             changeFleetDirection();
         }
     }
