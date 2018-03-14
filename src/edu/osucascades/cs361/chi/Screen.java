@@ -27,7 +27,7 @@ public class Screen implements Drawable {
         canvas = currentP;
         scoreData = new ScoreManager(canvas);
         highScore = scoreData.readScoresFromFile();
-        scoreData.setHighScore("test5 5038");//for testing only
+        scoreData.setHighScore("test6 6000");//TODO remove this, just here for testing
     }
 
     public void draw() {
@@ -40,6 +40,7 @@ public class Screen implements Drawable {
         }else if(page == PAUSE) {
             displayPauseScreen();
         } else if(page == GAME_OVER) {
+            scoreData.setHighScore("test6 6000");//TODO create player class?
             displayGameOverScreen();
         }
     }
