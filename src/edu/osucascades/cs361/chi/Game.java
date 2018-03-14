@@ -28,7 +28,7 @@ public class Game {
         alienArmy.buildArmy(collidables, entities);
 
         for(int i = 0; i < 4; i++) {
-            Fort fort = new Fort(canvas.width/4 * i + 200, canvas.height - 200, 100, canvas);
+            Fort fort = new Fort(canvas.width/4 * i + 200, canvas.height - 250, 100, canvas);
             collidables.add(fort);
             entities.add(fort);
         }

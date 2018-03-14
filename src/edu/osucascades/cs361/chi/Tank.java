@@ -1,26 +1,30 @@
 package edu.osucascades.cs361.chi;
 
+import processing.core.PImage;
+
 import java.util.ArrayList;
+import processing.core.PImage;
 
 public class Tank implements Collidable, Drawable {
     private int x;
     private int y;
     private int width = 50;
-    private int height = 15;
+    private int height = 50;
     private int xSpeed = 1;
     private Sketch canvas;
     private boolean reloading;
+    private PImage sprite;
 
     Tank(int x, int y, Sketch canvas){
         this.x = x;
         this.y = y;
         this.canvas = canvas;
+        this.sprite = this.canvas.loadImage("data/img/ship.png");
     }
 
     public void draw(){
         this.move();
-        canvas.rect(this.x, this.y, this.width, this.height);
-        canvas.fill(255, 0, 0);
+        canvas.image(this.sprite, x, y, width, height);
     }
 
     private void move(){
