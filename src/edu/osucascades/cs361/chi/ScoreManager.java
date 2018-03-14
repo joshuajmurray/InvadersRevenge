@@ -28,7 +28,7 @@ public class ScoreManager {
         return hiScore;
     }
 
-    public String getHighScore(String[] arrayDataIn) {
+     public String getHighScore(String[] arrayDataIn) {
         int arraySize = arrayDataIn.length;
 
         for (int i = 0; i < arraySize; i++) {

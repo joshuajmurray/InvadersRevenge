@@ -13,7 +13,7 @@ public class Screen implements Drawable {
     private static final int START = 0;
     private static final int PLAY = 1;
     private static final int PAUSE = 2;
-    private static final int GAMEOVER = 3;
+    private static final int GAME_OVER = 3;
     private int highScore;
     private int score;
     private int lives;
@@ -39,7 +39,7 @@ public class Screen implements Drawable {
             displayPlayScreen();
         }else if(page == PAUSE) {
             displayPauseScreen();
-        } else if(page == GAMEOVER) {
+        } else if(page == GAME_OVER) {
             displayGameOverScreen();
         }
     }
