@@ -14,12 +14,12 @@ public class Screen implements Drawable {
     private static final int PLAY = 1;
     private static final int PAUSE = 2;
     private static final int GAME_OVER = 3;
-    private int highScore;
+    private String highScore = " ";
     private int score;
     private int lives;
     private PApplet canvas;
     private ScoreManager scoreData;
-    public int page = 1;//TODO setup as a global to select screens
+    public int page = PLAY;//TODO setup as a global to select screens
 
     Screen(int currentScore, int currentLives, PApplet currentP) {
         score = currentScore;
@@ -58,6 +58,7 @@ public class Screen implements Drawable {
     private void displayPlayScreen() {
         drawScoreLives();
         canvas.text(lives, (50 + canvas.textWidth(LIVES_TEXT)), (canvas.height - 50));
+//        canvas.text(highScore, (canvas.width/2) + (canvas.textWidth(HIGH_SCORE_TEXT))/2, ((canvas.height/2) + 50));//TODO remove when done testing
     }
 
     private void displayPauseScreen() {

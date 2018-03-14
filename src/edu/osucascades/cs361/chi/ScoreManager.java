@@ -12,20 +12,21 @@ public class ScoreManager {
     public static final String FULL_FILE_PATH = "./data/highScore.txt";
 
     private PApplet p;
-    int hiScore = 0;
-    String playerName = "";
+    private String highScore = "";
+    private int hiScore = 0;
+    private String playerName = "";
 
     ScoreManager(PApplet currentP) {
         p = currentP;
     }
 
-    public int readScoresFromFile() {
+    public String readScoresFromFile() {
         try {
-            println(getHighScore(p.loadStrings(FILE_NAME)));//TODO load highscore into system
+            highScore = getHighScore(p.loadStrings(FILE_NAME));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return hiScore;
+        return highScore;
     }
 
      public String getHighScore(String[] arrayDataIn) {
