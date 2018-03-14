@@ -3,21 +3,24 @@ package edu.osucascades.cs361.chi;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
+import processing.core.PImage;
 
 public class Fort implements Collidable, Drawable  {
 
     private int x;
     private int y;
-    private int width = 40;
-    private int height = 30;
+    private int width = 120;
+    private int height = 100;
     private int lifeRemaining;
     private Sketch canvas;
+    private PImage sprite;
 
     Fort(int x, int y, int lifeRemaining, Sketch p) {
         this.x = x;
         this.y = y;
         this.lifeRemaining = lifeRemaining;
         this.canvas = p;
+        this.sprite = this.canvas.loadImage("data/img/fort.png");
     }
 
     private void decay(int amount) {
@@ -36,7 +39,7 @@ public class Fort implements Collidable, Drawable  {
 
     public void draw() {
         canvas.fill(255, 0 , 0);
-        canvas.rect(x, y, width, height);
+        canvas.image(this.sprite, x, y, width, height);
     }
 
     @Override
