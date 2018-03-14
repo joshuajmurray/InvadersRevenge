@@ -45,16 +45,10 @@ public class Game {
             entity.draw();
         }
     }
+
     //creates one "to kill" array to hold objects marked to kill by the collision check method
     //then calls kill on each marked object
     private void checkForCollisions(ArrayList<Collidable> collidables){
-        ArrayList<Collidable> collidablesToKill = collisionCheck(collidables);
-
-        for (Collidable entity : collidablesToKill) {
-            entity.kill(collidables, this.entities);
-        }
-    }
-    private ArrayList<Collidable> collisionCheck( ArrayList<Collidable> collidables){
         ArrayList<Collidable> collidablesToKill = new ArrayList<>();
 
         for (Collidable entityA : collidables) {
@@ -71,7 +65,14 @@ public class Game {
                 }
             }
         }
-        return collidablesToKill;
+
+        killCollidedEntities(collidablesToKill);
+    }
+
+    private void killCollidedEntities(ArrayList<Collidable> collidablesToKill) {
+        for (Collidable entity : collidablesToKill) {
+            entity.kill(collidables, this.entities);
+        }
     }
 
     public Screen getScreen() {
