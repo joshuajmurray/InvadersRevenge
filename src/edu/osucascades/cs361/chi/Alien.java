@@ -1,6 +1,10 @@
 package edu.osucascades.cs361.chi;
 
 
+import java.util.ArrayList;
+import processing.core.PImage;
+import java.util.Random;
+
 public class Alien implements Collidable, Drawable {
     private Sketch canvas;
     private int width = 30;
@@ -9,21 +13,43 @@ public class Alien implements Collidable, Drawable {
     private int y;
     private int xSpeed = 1;
     private boolean reloading;
+    private PImage sprite;
 
 
     Alien(int x, int y, Sketch canvas) {
         this.x = x;
         this.y = y;
         this.canvas = canvas;
+        this.sprite = this.canvas.loadImage(chooseRandomAlienImage());
+    }
+
+    private String chooseRandomAlienImage() {
+        Random randomImageAssigner = new Random();
+        int randomImageNumber = randomImageAssigner.nextInt(4) + 1;
+
+        switch (randomImageNumber) {
+            case 1:
+                return "data/img/AlienRed.png";
+
+            case 2:
+                return "data/img/AlienGreen.png";
+
+            case 3:
+                return "data/img/AlienBlue.png";
+
+            default:
+                return "data/img/AlienYellow.png";
+        }
     }
 
     public void draw(){
-        canvas.fill(0, 255, 50);
-        canvas.rect(x, y, width, height);
+        canvas.image(this.sprite, x, y, width, height);
+        //canvas.fill(0, 255, 50);
+        //canvas.rect(x, y, width, height);
         move();
     }
 
-    public void move() {
+    private void move() {
         if (this.x == canvas.width - this.width) {
             this.xSpeed = -1;
             this.y += height;
@@ -35,21 +61,13 @@ public class Alien implements Collidable, Drawable {
         this.x += xSpeed;
     }
 
-    public void kill(){
-        this.canvas.game.screen.updateScore();
-        this.canvas.game.collidables.remove(this);
-        this.canvas.game.entities.remove(this);
+    public void kill(ArrayList collidables, ArrayList entities){
+        this.canvas.game.getScreen().updateScore();
+        collidables.remove(this);
+        entities.remove(this);
 
     }
-    public boolean checkCollisions(Collidable EntityA, Collidable EntityB){
-        boolean b = false;
-        if (EntityA.getX() >= EntityB.getX() && EntityA.getX() +  EntityA.getWidth() <= EntityB.getX() + EntityB. getWidth()) {
-            if (EntityA.getY() >= EntityB.getY() && EntityA.getY()  + EntityA.getHeight() <= EntityB.getY() +  EntityB.getHeight()) {
-                b = true;
-            }
-        }
-        return b;
-    }
+
     public void setReloading(boolean b) {
         this.reloading = b;
     }

@@ -1,27 +1,33 @@
 package edu.osucascades.cs361.chi;
 
+import processing.core.PImage;
+
+import java.util.ArrayList;
+import processing.core.PImage;
+
 public class Tank implements Collidable, Drawable {
     private int x;
     private int y;
     private int width = 50;
-    private int height = 15;
+    private int height = 50;
     private int xSpeed = 1;
     private Sketch canvas;
     private boolean reloading;
+    private PImage sprite;
 
     Tank(int x, int y, Sketch canvas){
         this.x = x;
         this.y = y;
         this.canvas = canvas;
+        this.sprite = this.canvas.loadImage("data/img/ship.png");
     }
 
     public void draw(){
         this.move();
-        canvas.rect(this.x, this.y, this.width, this.height);
-        canvas.fill(255, 0, 0);
+        canvas.image(this.sprite, x, y, width, height);
     }
 
-    public void move(){
+    private void move(){
         if (this.x < 0) {
             this.x = 0;
         }
@@ -40,23 +46,15 @@ public class Tank implements Collidable, Drawable {
     public void shoot(Sketch canvas) {
         reloading = true;
         PlayerRocket rocket = new PlayerRocket(canvas, this, -10);
-        canvas.game.collidables.add(rocket);
-        canvas.game.entities.add(rocket);
+        canvas.game.getCollidables().add(rocket);
+        canvas.game.getEntities().add(rocket);
     }
 
-    public void kill(){
-        this.canvas.game.collidables.remove(this);
-        this.canvas.game.entities.remove(this);
+    public void kill(ArrayList collidables, ArrayList entities){
+        collidables.remove(this);
+        entities.remove(this);
     }
-    public boolean checkCollisions(Collidable EntityA, Collidable EntityB){
-        boolean b = false;
-        if (EntityA.getX() >= EntityB.getX() && EntityA.getX() +  EntityA.getWidth() <= EntityB.getX() + EntityB. getWidth()) {
-            if (EntityA.getY() >= EntityB.getY() && EntityA.getY()  + EntityA.getHeight() <= EntityB.getY() +  EntityB.getHeight()) {
-                b = true;
-            }
-        }
-        return b;
-    }
+    
     public void setReloading(boolean b) {
         this.reloading = b;
     }

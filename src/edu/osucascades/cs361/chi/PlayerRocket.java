@@ -1,5 +1,7 @@
 package edu.osucascades.cs361.chi;
 
+import java.util.ArrayList;
+
 public class PlayerRocket implements Collidable, Drawable {
 
     private int x;
@@ -16,17 +18,15 @@ public class PlayerRocket implements Collidable, Drawable {
         this.direction = direction;
     }
 
-    public void kill() {
-        this.canvas.game.collidables.remove(this);
-        this.canvas.game.entities.remove(this);
-        canvas.game.player.setReloading(false);
+    public void kill(ArrayList collidables, ArrayList entities) {
+        collidables.remove(this);
+        entities.remove(this);
+        canvas.game.getPlayer().setReloading(false);
     }
 
-    public void move() {
+    private void move() {
         if (this.y < 0){
-            canvas.game.player.setReloading(false);
-            this.canvas.game.collidables.remove(this);
-            this.canvas.game.entities.remove(this);
+            this.kill(this.canvas.game.getCollidables(), this.canvas.game.getEntities());
         }
         this.y = this.y + direction;
     }
@@ -36,15 +36,7 @@ public class PlayerRocket implements Collidable, Drawable {
         canvas.rect(this.x, this.y, width, height);
         canvas.fill(255);
     }
-    public boolean checkCollisions(Collidable EntityA, Collidable EntityB){
-        boolean b = false;
-        if (EntityA.getX() >= EntityB.getX() && EntityA.getX() +  EntityA.getWidth() <= EntityB.getX() + EntityB. getWidth()) {
-            if (EntityA.getY() >= EntityB.getY() && EntityA.getY()  + EntityA.getHeight() <= EntityB.getY() +  EntityB.getHeight()) {
-                b = true;
-            }
-        }
-        return b;
-    }
+
     public int getWidth() {
         return this.width;
     }

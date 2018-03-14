@@ -15,7 +15,7 @@ public class Sketch extends PApplet {
     }
 
     public void draw() {
-        game.player.updateDirection(playerMovementDirection);
+        game.getPlayer().updateDirection(playerMovementDirection);
         game.draw();
     }
 
@@ -23,8 +23,8 @@ public class Sketch extends PApplet {
         if (key == 'a' || key == 'd' ) {
             this.playerMovementDirection = 0;
         }
-        if (key == ' ' && !game.player.isReloading()) {
-            game.player.shoot(this);
+        if (key == ' ' && !game.getPlayer().isReloading()) {
+            game.getPlayer().shoot(this);
         }
     }
     public void keyPressed() {

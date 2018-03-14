@@ -3,21 +3,24 @@ package edu.osucascades.cs361.chi;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
+import processing.core.PImage;
 
 public class Fort implements Collidable, Drawable  {
 
     private int x;
     private int y;
-    private int width = 40;
-    private int height = 30;
+    private int width = 120;
+    private int height = 100;
     private int lifeRemaining;
-    public Sketch canvas;
+    private Sketch canvas;
+    private PImage sprite;
 
-    public Fort(int x, int y, int lifeRemaining, Sketch p) {
+    Fort(int x, int y, int lifeRemaining, Sketch p) {
         this.x = x;
         this.y = y;
         this.lifeRemaining = lifeRemaining;
         this.canvas = p;
+        this.sprite = this.canvas.loadImage("data/img/fort.png");
     }
 
     private void decay(int amount) {
@@ -26,28 +29,17 @@ public class Fort implements Collidable, Drawable  {
 
 
 
-    public void kill() {
+    public void kill(ArrayList collidables, ArrayList entities) {
         decay(10);
         if (this.lifeRemaining == 0){
-            this.canvas.game.collidables.remove(this);
-            this.canvas.game.entities.remove(this);
+            collidables.remove(this);
+            entities.remove(this);
         }
     }
 
     public void draw() {
         canvas.fill(255, 0 , 0);
-        canvas.rect(x, y, width, height);
-    }
-
-    @Override
-    public boolean checkCollisions(Collidable EntityA, Collidable EntityB){
-        boolean b = false;
-        if (EntityA.getX() >= EntityB.getX() && EntityA.getX() +  EntityA.getWidth() <= EntityB.getX() + EntityB. getWidth()) {
-            if (EntityA.getY() >= EntityB.getY() && EntityA.getY()  + EntityA.getHeight() <= EntityB.getY() +  EntityB.getHeight()) {
-                b = true;
-            }
-        }
-        return b;
+        canvas.image(this.sprite, x, y, width, height);
     }
 
     public int getWidth() {

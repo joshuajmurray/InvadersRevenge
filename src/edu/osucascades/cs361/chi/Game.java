@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
     private Sketch canvas;
+<<<<<<< HEAD
     public ArrayList<Collidable> collidables = new ArrayList<>();
     public ArrayList<Drawable> entities  = new ArrayList<>();
 
@@ -11,69 +12,98 @@ public class Game {
     public AlienArmy alienArmy;
     public ScoreManager scoreManager;
     public Screen screen;
+=======
+    private Screen screen;
+    private ArrayList<Collidable> collidables = new ArrayList<>();
+    private ArrayList<Drawable> entities  = new ArrayList<>();
+
+    private Tank player;
+    private AlienArmy alienArmy;
+>>>>>>> d8f8feb0c3631a259e1dde68f2a6adab7ce9021c
 
     Game(Sketch canvas){
         this.canvas = canvas;
         setup();
     }
 
+<<<<<<< HEAD
     public void setup(){
         this.scoreManager = new ScoreManager(canvas);
+=======
+    private void setup(){
+>>>>>>> d8f8feb0c3631a259e1dde68f2a6adab7ce9021c
         this.screen = new Screen(0,4,canvas);
-        this.player = new Tank(0,canvas.height - 100, canvas);
-        this.alienArmy = new AlienArmy(0, 200, canvas);
+        entities.add(screen);
 
+        this.player = new Tank(0,canvas.height - 100, canvas);
         entities.add(this.player);
         collidables.add(this.player);
 
+        this.alienArmy = new AlienArmy(0, 200, canvas);
         alienArmy.buildArmy(collidables, entities);
 
         for(int i = 0; i < 4; i++) {
-            Fort fort = new Fort(canvas.width/4 * i + 200, canvas.height - 200, 100, canvas);
+            Fort fort = new Fort(canvas.width/4 * i + 200, canvas.height - 250, 100, canvas);
             collidables.add(fort);
             entities.add(fort);
         }
     }
     public void draw(){
-        screen.draw();
         drawEntities();
         checkForCollisions(collidables);
     }
-    // cycles through the vehicle and explosive arrays drawing each of them.
-    public void drawEntities(){
-        //cycle through entities
-        for (int i=0; i<this.entities.size(); i++) {
-            Drawable entity = this.entities.get(i);
+    // cycles through the vehicles and explosives drawing each of them.
+    private void drawEntities(){
+
+        for (int i = 0; i < entities.size(); i ++) {
+            Drawable entity = entities.get(i);
             entity.draw();
         }
     }
+
     //creates one "to kill" array to hold objects marked to kill by the collision check method
     //then calls kill on each marked object
-    public void checkForCollisions(ArrayList<Collidable> collidables){
+    private void checkForCollisions(ArrayList<Collidable> collidables){
         ArrayList<Collidable> collidablesToKill = new ArrayList<>();
 
-        collisionCheck(collidables, collidablesToKill);
+        for (Collidable entityA : collidables) {
+            for (Collidable entityB : collidables) {
 
-        for (Collidable entity : collidablesToKill) {
-            entity.kill();
-        }
-    }
-    private void collisionCheck( ArrayList<Collidable> collidables, ArrayList<Collidable> collidablesToKill){
-        for (int i=0; i< collidables.size(); i++) {
-            Collidable entityA = collidables.get(i);
-            for (int j= 0; j< collidables.size(); j++) {
-                if (i == j){
+                if (entityA == entityB){
                     //do nothing if its comparing itself  otherwise everything will be marked to kill.
                 }
                 else {
-                    Collidable entityB = collidables.get(j);
-                    if (entityA.checkCollisions(entityA, entityB)) {
+                    if (entityA.isTouching(entityB)) {
                         collidablesToKill.add(entityA);
                         collidablesToKill.add(entityB);
                     }
                 }
             }
         }
+
+        killCollidedEntities(collidablesToKill);
+    }
+
+    private void killCollidedEntities(ArrayList<Collidable> collidablesToKill) {
+        for (Collidable entity : collidablesToKill) {
+            entity.kill(collidables, this.entities);
+        }
+    }
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public Tank getPlayer() {
+        return player;
+    }
+
+    public ArrayList<Collidable> getCollidables() {
+        return collidables;
+    }
+
+    public ArrayList<Drawable> getEntities() {
+        return entities;
     }
 }
 
