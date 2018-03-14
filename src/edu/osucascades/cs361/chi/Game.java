@@ -64,7 +64,7 @@ public class Game {
                     //do nothing if its comparing itself  otherwise everything will be marked to kill.
                 }
                 else {
-                    if (entityA.checkCollisions(entityA, entityB)) {
+                    if (entityA.isTouching(entityB)) {
                         collidablesToKill.add(entityA);
                         collidablesToKill.add(entityB);
                     }

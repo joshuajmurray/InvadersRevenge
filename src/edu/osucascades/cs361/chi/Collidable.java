@@ -3,8 +3,6 @@ package edu.osucascades.cs361.chi;
 import java.util.ArrayList;
 
 public interface Collidable {
-     boolean checkCollisions(Collidable a, Collidable b);
-
      default boolean isTouching(Collidable collidableEntity) {
           boolean isTouchingEntity = false;
           if (this.getX() >= collidableEntity.getX() && this.getX() +  this.getWidth() <= collidableEntity.getX() + collidableEntity. getWidth()) {

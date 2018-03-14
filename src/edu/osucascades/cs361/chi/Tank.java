@@ -54,15 +54,7 @@ public class Tank implements Collidable, Drawable {
         collidables.remove(this);
         entities.remove(this);
     }
-    public boolean checkCollisions(Collidable EntityA, Collidable EntityB){
-        boolean b = false;
-        if (EntityA.getX() >= EntityB.getX() && EntityA.getX() +  EntityA.getWidth() <= EntityB.getX() + EntityB. getWidth()) {
-            if (EntityA.getY() >= EntityB.getY() && EntityA.getY()  + EntityA.getHeight() <= EntityB.getY() +  EntityB.getHeight()) {
-                b = true;
-            }
-        }
-        return b;
-    }
+    
     public void setReloading(boolean b) {
         this.reloading = b;
     }
