@@ -10,6 +10,7 @@ public class Game {
     private ArrayList<Drawable> entities  = new ArrayList<>();
     private Tank player;
     private AlienArmy alienArmy;
+    private static final int START_LIVES = 4;
 
     Game(Sketch canvas){
         this.canvas = canvas;
@@ -18,7 +19,7 @@ public class Game {
 
     private void setup(){
         this.scoreManager = new ScoreManager(canvas);
-        this.screen = new Screen(0,4,canvas);
+        this.screen = new Screen(0,START_LIVES,canvas);
         entities.add(screen);
 
         this.player = new Tank(0,canvas.height - 100, canvas);
