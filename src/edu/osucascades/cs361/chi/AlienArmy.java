@@ -2,10 +2,11 @@ package edu.osucascades.cs361.chi;
 import java.util.ArrayList;
 
 public class AlienArmy {
+    private static final int ALIEN_FLEET_COUNT = 2;
+
     private Sketch canvas;
     private int x;
     private int y;
-    private static final int ALIEN_FLEET_COUNT = 2;
     private Fleet[] fleets;
 
 

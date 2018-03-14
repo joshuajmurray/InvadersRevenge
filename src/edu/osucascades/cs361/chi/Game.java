@@ -25,7 +25,7 @@ public class Game {
         entities.add(this.player);
         collidables.add(this.player);
 
-        this.alienArmy = new AlienArmy(0, 200, canvas);
+        this.alienArmy = new AlienArmy(1, 200, canvas);
         alienArmy.buildArmy(collidables, entities);
 
         for(int i = 0; i < 4; i++) {

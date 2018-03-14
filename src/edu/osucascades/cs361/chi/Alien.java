@@ -6,12 +6,15 @@ import processing.core.PImage;
 import java.util.Random;
 
 public class Alien implements Collidable, Drawable {
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
+
     private Sketch canvas;
     private int width = 30;
     private int height = 30;
     private int x;
     private int y;
-    private int xSpeed = 1;
+    private int direction;
     private boolean reloading;
     private PImage sprite;
 
@@ -20,6 +23,7 @@ public class Alien implements Collidable, Drawable {
         this.x = x;
         this.y = y;
         this.canvas = canvas;
+        this.direction = RIGHT;
         this.sprite = this.canvas.loadImage(chooseRandomAlienImage());
     }
 
@@ -44,21 +48,25 @@ public class Alien implements Collidable, Drawable {
 
     public void draw() {
         canvas.image(this.sprite, x, y, width, height);
-        //canvas.fill(0, 255, 50);
-        //canvas.rect(x, y, width, height);
-        //move();
     }
 
     public void move() {
-        if (this.x == canvas.width - this.width) {
-            this.xSpeed = -1;
-            this.y += height;
+        this.x += this.direction;
+    }
+
+    public void changeDirection() {
+        if (this.direction == LEFT) {
+            this.direction = RIGHT;
+            bringAlienDown();
         }
-        if (this.x == 0 && xSpeed == -1) {
-            this.xSpeed = 1;
-            this.y += height;
+        else if (this.direction == RIGHT) {
+            this.direction = LEFT;
+            bringAlienDown();
         }
-        this.x += xSpeed;
+    }
+
+    private void bringAlienDown() {
+        this.y += this.height;
     }
 
     public void kill(ArrayList collidables, ArrayList entities) {
@@ -68,34 +76,31 @@ public class Alien implements Collidable, Drawable {
 
     }
 
-    public void setReloading(boolean b) {
-        this.reloading = b;
-    }
-
     public boolean isReloading() {
         return reloading;
+    }
+    public void setReloading(boolean b) {
+        this.reloading = b;
     }
 
     public int getWidth() {
         return this.width;
     }
-    public int getHeight(){
-        return this.height;
-    }
-
-    public int getY() {
-        return y;
-    }
-
     public void setWidth(int width) {
         this.width = width;
     }
 
+    public int getHeight(){
+        return this.height;
+    }
     public void setHeight(int height) {
         this.height = height;
     }
 
     public int getX() {
         return x;
+    }
+    public int getY() {
+        return y;
     }
 }
