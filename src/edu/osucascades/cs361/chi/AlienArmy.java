@@ -13,13 +13,14 @@ public class AlienArmy {
         this.x = x;
         this.y = y;
         this.canvas = canvas;
+        this.fleets = new Fleet[ALIEN_FLEET_COUNT];
     }
 
     public void buildArmy(ArrayList<Collidable> collidables, ArrayList<Drawable> entities) {
-        fleets = new Fleet[ALIEN_FLEET_COUNT];
         for (int i = 0; i < ALIEN_FLEET_COUNT; i++) {
-            Fleet f = new Fleet(x, y + (i*50), canvas);
-            f.buildFleet(collidables, entities);
+            fleets[i] = new Fleet(x, y + (i*50), canvas);
+            fleets[i].buildFleet(collidables);
+            entities.add(fleets[i]);
         }
     }
 }

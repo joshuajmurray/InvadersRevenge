@@ -42,14 +42,14 @@ public class Alien implements Collidable, Drawable {
         }
     }
 
-    public void draw(){
+    public void draw() {
         canvas.image(this.sprite, x, y, width, height);
         //canvas.fill(0, 255, 50);
         //canvas.rect(x, y, width, height);
-        move();
+        //move();
     }
 
-    private void move() {
+    public void move() {
         if (this.x == canvas.width - this.width) {
             this.xSpeed = -1;
             this.y += height;
@@ -61,7 +61,7 @@ public class Alien implements Collidable, Drawable {
         this.x += xSpeed;
     }
 
-    public void kill(ArrayList collidables, ArrayList entities){
+    public void kill(ArrayList collidables, ArrayList entities) {
         this.canvas.game.getScreen().updateScore();
         collidables.remove(this);
         entities.remove(this);
